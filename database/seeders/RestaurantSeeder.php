@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Restaurant;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -90,6 +91,21 @@ class RestaurantSeeder extends Seeder
 
         $category = Category::all();
         $categoryIds = $category->pluck('id');
+        $user = User::all();
+        $userIds = $user->pluck('id');
+
+        function getUniqueUserId($userIds, &$usedUserIds, $faker) {
+        
+            do {
+                $userId = $faker->randomElement($userIds);
+            } while (in_array($userId, $usedUserIds));
+        
+            $usedUserIds[] = $userId;
+        
+            return $userId;
+        }
+
+        $data = [];
 
         foreach($restaurants as $restaurant){
             $new_restaurant = new Restaurant();
@@ -99,6 +115,7 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->phone_number = $restaurant['phone_number'];
             $new_restaurant->vat = $restaurant['vat'];
             $new_restaurant->photo = $restaurant['photo'];
+            $new_restaurant->user_id = getUniqueUserId($userIds, $data, $faker);
 
             $new_restaurant->save();
             $new_restaurant->categories()->attach($faker->randomElements($categoryIds, null));
