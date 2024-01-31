@@ -20,70 +20,70 @@ class RestaurantSeeder extends Seeder
                 'name' => 'Ristorante Uno',
                 'address' => 'Via Roma, 123',
                 'phone_number' => '+39 123 456789',
-                'vat' => 'Italiana',
+                'vat' => '1234',
                 'photo' => 'https://example.com/ristorante_uno.jpg'
             ],
             [
                 'name' => 'Cuisine Fusion',
                 'address' => 'Street 456, City Center',
                 'phone_number' => '+1 555 7890123',
-                'vat' => 'Internazionale',
+                'vat' => '123',
                 'photo' => 'https://example.com/cuisine_fusion.jpg'
             ],
             [
                 'name' => 'Sushi Time',
                 'address' => '123 Sushi Street',
                 'phone_number' => '+81 90 1234 5678',
-                'vat' => 'Giapponese',
+                'vat' => '532',
                 'photo' => 'https://example.com/sushi_time.jpg'
             ],
             [
                 'name' => 'Pizzeria Bella',
                 'address' => 'Piazza del Popolo, 7',
                 'phone_number' => '+39 333 444555',
-                'vat' => 'Italiana',
+                'vat' => '333',
                 'photo' => 'https://example.com/pizzeria_bella.jpg'
             ],
             [
                 'name' => 'Mexican Flavor',
                 'address' => 'Avenida de los Tacos, 321',
                 'phone_number' => '+52 55 6789 0123',
-                'vat' => 'Messicana',
+                'vat' => '222',
                 'photo' => 'https://example.com/mexican_flavor.jpg'
             ],
             [
                 'name' => 'Vegetarian Delight',
                 'address' => 'Green Avenue, 789',
                 'phone_number' => '+1 123 4567890',
-                'vat' => 'Vegetariana',
+                'vat' => '211',
                 'photo' => 'https://example.com/vegetarian_delight.jpg'
             ],
             [
                 'name' => 'Steakhouse Supreme',
                 'address' => 'Prime Rib Road, 456',
                 'phone_number' => '+1 987 6543210',
-                'vat' => 'Grill',
+                'vat' => '153',
                 'photo' => 'https://example.com/steakhouse_supreme.jpg'
             ],
             [
                 'name' => 'Seafood Haven',
                 'address' => 'Oceanfront Drive, 567',
                 'phone_number' => '+44 20 1234 5678',
-                'vat' => 'Frutti di mare',
+                'vat' => '3533',
                 'photo' => 'https://example.com/seafood_haven.jpg'
             ],
             [
                 'name' => 'Café de Paris',
                 'address' => 'Rue de la Croissant, 890',
                 'phone_number' => '+33 1 2345 6789',
-                'vat' => 'Francese',
+                'vat' => '666',
                 'photo' => 'https://example.com/cafe_de_paris.jpg'
             ],
             [
                 'name' => 'Indian Spyce Hub',
                 'address' => 'Curry Lane, 123',
                 'phone_number' => '+91 80 9876 5432',
-                'vat' => 'Indiana',
+                'vat' => '888',
                 'photo' => 'https://example.com/indian_spice_hub.jpg'
             ]
         ];
