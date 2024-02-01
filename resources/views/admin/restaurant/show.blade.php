@@ -8,7 +8,7 @@
 </head>
 <body>
   <ul class="d-flex">
-      <li><img class="w-100" src="{{asset('storage/images/'.$restaurant->photo)}}" alt="photo-restaurant"></li>
+      <li><img class="w-100" src="{{asset('storage/' . $restaurant->photo)}}" alt="photo-restaurant"></li>
       <li>Il nome del tuo ristorante é: <strong>{{$restaurant->name}}</strong></li>    
       <li>L'Indirizzo del tuo ristorante é: <strong>{{$restaurant->address}}</strong></li>
       <li>Il numero del tuo ristorante é: <strong>{{$restaurant->phone_number}}</strong></li>

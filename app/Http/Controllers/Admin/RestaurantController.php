@@ -52,13 +52,13 @@ class RestaurantController extends Controller
                 'address' => 'required|max:255|string',
                 'phone_number' => 'required|max:30|string',
                 'vat' => 'required|max:20|string',
-                'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
+                'photo' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
                 'user_id' => 'nullable|exists:users,id'
             ]);
             $data = $request->all();
             if ($request->hasFile('photo')) {
-                $fileName = time() . '.' . $request->photo->extension();
-                $request->photo->storeAs('public/images', $fileName);
+                $file_path = Storage::put('images', $request->photo);
+                $data['photo'] = $file_path;
             }
             $currentUser = Auth::user()->id;
             $arrayId = ['user_id' => $currentUser];
