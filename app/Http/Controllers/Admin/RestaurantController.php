@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
+use App\Models\User;
 
 class RestaurantController extends Controller
 {
@@ -22,6 +23,8 @@ class RestaurantController extends Controller
     public function create()
     {
         //
+        $users = User::all();
+        return view('admin.restaurant.create', compact('users'));
     }
 
     /**
@@ -29,7 +32,24 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255|string',
+            'address' => 'required|max:255|string',
+            'phone_number' => 'required|max:30|string',
+            'vat' => 'required|max:20|string',
+            'photo' => 'file|mimes:jpeg,png,pdf|max:2048',
+            'user_id' => 'nullable|exists:users,id'
+        ]);
+        $data = $request->all();
+        $result = User::select('id')->get();;
+        $userIds = ($request->has($result) ? $request->get($result) : []);
+        $new_restaurant = Restaurant::create($data);
+
+        if(count($userIds)){
+            $new_restaurant->users()->attach($userIds);
+        }
+
+        return redirect()->route('admin.restaurant.show', $new_restaurant);
     }
 
     /**
@@ -37,7 +57,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return view('admin.restaurant.show', compact('restaurant'));
     }
 
     /**
