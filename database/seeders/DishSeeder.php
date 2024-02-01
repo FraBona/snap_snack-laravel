@@ -3,15 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class DishSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
         $dishes = [
             [
@@ -85,6 +87,8 @@ class DishSeeder extends Seeder
                 'photo' => 'https://example.com/gelato_cioccolato.jpg'
             ]
         ];
+        $restaurant = Restaurant::all();
+        $restaurantIds = $restaurant->pluck('id');
         foreach($dishes as $dish) {
 
             $new_dish = new Dish();
@@ -96,6 +100,8 @@ class DishSeeder extends Seeder
             $new_dish->photo = $dish['photo'];
 
             $new_dish->save();
+
+            $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
 
        }
     }
