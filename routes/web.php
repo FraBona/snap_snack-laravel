@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('restaurant', RestaurantController::class)->only(['create', 'store']);
+    Route::resource('restaurant', RestaurantController::class)->only(['create', 'store', 'show']);
 
 });
 

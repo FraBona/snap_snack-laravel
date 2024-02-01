@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -37,18 +39,15 @@ class RestaurantController extends Controller
             'address' => 'required|max:255|string',
             'phone_number' => 'required|max:30|string',
             'vat' => 'required|max:20|string',
-            'photo' => 'file|mimes:jpeg,png,pdf|max:2048',
+            'photo' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
             'user_id' => 'nullable|exists:users,id'
         ]);
         $data = $request->all();
-        $result = User::select('id')->get();;
-        $userIds = ($request->has($result) ? $request->get($result) : []);
-        $new_restaurant = Restaurant::create($data);
-
-        if(count($userIds)){
-            $new_restaurant->users()->attach($userIds);
-        }
-
+        $currentUser = Auth::user()->id;
+        $arrayId = ['user_id' => $currentUser];
+        $finalArray = array_merge($data, $arrayId);
+        $new_restaurant = Restaurant::create($finalArray);
+    
         return redirect()->route('admin.restaurant.show', $new_restaurant);
     }
 

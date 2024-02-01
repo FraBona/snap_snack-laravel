@@ -12,5 +12,6 @@
   <h1>{{$restaurant->phone_number}}</h1>
   <h1>{{$restaurant->vat}}</h1>
   <h2><h1>{{$restaurant->photo}}</h1></h2>
+  <a href="{{route('admin.dashboard')}}">Home</a>
 </body>
 </html>

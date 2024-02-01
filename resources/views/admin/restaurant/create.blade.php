@@ -1,5 +1,5 @@
 <div class="form">
-  <form action="{{route('dashboard')}}" method="post">
+  <form action="{{route('admin.restaurant.store')}}" method="post">
       @csrf
       <label for="name">Name</label>
       <input type="text" id="name" name="name" class="form-control">
