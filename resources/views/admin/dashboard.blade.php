@@ -18,12 +18,12 @@
                     @endif
                     {{ __('You are logged in!') }}
                 </div>
-                @if (!($restaurant))
+            </div>
+            @if (!($restaurant))
                     <a href="{{route('admin.restaurant.create')}}">Create</a>
                 @else
-                    <p>{{$restaurant->name}}</p>
+                    <span>Il tuo ristorante é: </span><span><strong><a href="{{route('admin.restaurant.show',$restaurant)}}">{{$restaurant->name}}</a></strong></span>
                 @endif
-            </div>
         </div>
     </div>
 </div>

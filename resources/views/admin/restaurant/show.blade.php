@@ -7,11 +7,13 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>{{$restaurant->name}}</h1>
-  <h1>{{$restaurant->address}}</h1>
-  <h1>{{$restaurant->phone_number}}</h1>
-  <h1>{{$restaurant->vat}}</h1>
-  <h2><h1>{{$restaurant->photo}}</h1></h2>
-  <a href="{{route('admin.dashboard')}}">Home</a>
+  <ul class="d-flex">
+      <li><img src="{{ $restaurant->photo }}" alt="photo-restaurant"></li>
+      <li>Il nome del tuo ristorante é: <strong>{{$restaurant->name}}</strong></li>    
+      <li>L'Indirizzo del tuo ristorante é: <strong>{{$restaurant->address}}</strong></li>
+      <li>Il numero del tuo ristorante é: <strong>{{$restaurant->phone_number}}</strong></li>
+      <li>La partita iva del tuo ristorante é: <strong>{{$restaurant->vat}}</strong></li>
+      <a href="{{route('admin.dashboard')}}">Home</a>
+  </ul>
 </body>
 </html>
