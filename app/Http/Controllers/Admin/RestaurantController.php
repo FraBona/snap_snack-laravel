@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -25,8 +26,14 @@ class RestaurantController extends Controller
     public function create()
     {
         //
-        $users = User::all();
-        return view('admin.restaurant.create', compact('users'));
+        $user = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', '=', $user)->first();
+        if($restaurant){
+           return redirect()->route('admin.dashboard');
+        }
+        else{
+            return view('admin.restaurant.create', compact('user', 'restaurant'));
+        }
     }
 
     /**
@@ -34,21 +41,32 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255|string',
-            'address' => 'required|max:255|string',
-            'phone_number' => 'required|max:30|string',
-            'vat' => 'required|max:20|string',
-            'photo' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
-            'user_id' => 'nullable|exists:users,id'
-        ]);
-        $data = $request->all();
-        $currentUser = Auth::user()->id;
-        $arrayId = ['user_id' => $currentUser];
-        $finalArray = array_merge($data, $arrayId);
-        $new_restaurant = Restaurant::create($finalArray);
-    
-        return redirect()->route('admin.restaurant.show', $new_restaurant);
+        $user = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', '=', $user)->first();
+        if($restaurant){
+           return redirect()->route('admin.dashboard');
+        }
+        else{
+            $request->validate([
+                'name' => 'required|max:255|string',
+                'address' => 'required|max:255|string',
+                'phone_number' => 'required|max:30|string',
+                'vat' => 'required|max:20|string',
+                'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
+                'user_id' => 'nullable|exists:users,id'
+            ]);
+            $data = $request->all();
+            if ($request->hasFile('photo')) {
+                $fileName = time() . '.' . $request->photo->extension();
+                $request->photo->storeAs('public/images', $fileName);
+            }
+            $currentUser = Auth::user()->id;
+            $arrayId = ['user_id' => $currentUser];
+            $finalArray = array_merge($data, $arrayId);
+            $new_restaurant = Restaurant::create($finalArray);
+        
+            return redirect()->route('admin.restaurant.show', $new_restaurant);
+        }
     }
 
     /**
