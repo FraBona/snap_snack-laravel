@@ -88,7 +88,8 @@ class DishSeeder extends Seeder
             ]
         ];
         $restaurant = Restaurant::all();
-        $restaurantIds = $restaurant->pluck('id');
+        // $restaurantIds = $restaurant->pluck('id');
+
         foreach($dishes as $dish) {
 
             $new_dish = new Dish();
@@ -98,10 +99,11 @@ class DishSeeder extends Seeder
             $new_dish->price = $dish['price'];
             $new_dish->visible = $dish['visible'];
             $new_dish->photo = $dish['photo'];
+            $new_dish->restaurant_id = $restaurant->random()->id;
 
             $new_dish->save();
 
-            $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
+            // $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
 
        }
     }
