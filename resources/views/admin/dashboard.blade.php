@@ -24,6 +24,7 @@
                 @else
                     <span>Il tuo ristorante é: </span><span><strong><a href="{{route('admin.restaurant.show',$restaurant)}}">{{$restaurant->name}}</a></strong></span>
                 @endif
+            <a href="{{route('admin.dishes.create')}}">Crezione piatto</a>
         </div>
     </div>
 </div>

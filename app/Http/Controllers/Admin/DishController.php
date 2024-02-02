@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDishRequest;
 use App\Http\Requests\UpdateDishRequest;
 use App\Models\Dish;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -33,14 +36,26 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
+        $user = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', '=', $user)->first();
         $request->validate([
-            'name' => 'required|max:255|string',
+            'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
             'description' => 'nullable|min:20|string',
-            'price'=> 'required|numeric|between:min,max',
-            'visible'=> '',
+            'price'=> 'required|numeric|between:0,9999.99',
+            'visible' => 'boolean',
+            'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
+            'restaurant_id' => 'exists:restaurants,id'
         ]);
-
-
+        $data = $request->all();
+        if ($request->hasFile('photo')) {
+            $file_path = Storage::put('images', $request->photo);
+            $data['photo'] = $file_path;
+        }
+        $arrayId = ['restaurant_id' => $restaurant->id];
+        $finalArray = array_merge($data, $arrayId);
+        $new_dish = Dish::create($finalArray);
+        
+        return redirect()->route('admin.dishes.show', $new_dish);
     }
 
     /**
@@ -48,7 +63,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //crea
+        return view('admin.dishes.show', compact('dish'));
     }
 
     /**
@@ -72,6 +87,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        return redirect()->route('admin.dashboard');
     }
 }

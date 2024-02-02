@@ -48,10 +48,10 @@ class RestaurantController extends Controller
         }
         else{
             $request->validate([
-                'name' => 'required|max:255|string',
+                'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
                 'address' => 'required|max:255|string',
-                'phone_number' => 'required|max:30|string',
-                'vat' => 'required|max:20|string',
+                'phone_number' => 'required|regex:/[0-9]+/|max:30|string',
+                'vat' => 'required|max:11|min:11|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
                 'user_id' => 'nullable|exists:users,id'
             ]);
