@@ -34,6 +34,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        $restaurant->load('categories');
         return response()->json([
             'restaurant' => $restaurant,
         ]);
