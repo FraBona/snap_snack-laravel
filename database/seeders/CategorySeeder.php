@@ -14,45 +14,38 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Italiana',
-                'description' => 'Ristoranti che offrono piatti della cucina italiana.'
+                'name' => 'Hamburger',
+                'description' => 'Scopri la perfezione del gusto con i nostri hamburger: carne succulenta, condimenti freschi e panini irresistibili. Soddisfa la tua fame con la nostra varietà di creazioni, dalle classiche alle opzioni gourmet.'
             ],
             [
-                'name' => 'Internazionale',
-                'description' => 'Ristoranti con una varietà di piatti internazionali.'
+                'name' => 'Italiano',
+                'description' => "Un viaggio attraverso l'Italia con ogni morso. Dalla pasta alle pizze, offriamo autentici piatti italiani preparati con ingredienti freschi e amore per la tradizione."
             ],
             [
-                'name' => 'Giapponese',
-                'description' => 'Ristoranti specializzati in cucina giapponese, sushi e sashimi.'
+                'name' => 'Fritti',
+                'description' =>    "Croccantezza in ogni boccone! Dalle patatine alle mozzarelle, deliziamo il tuo palato con una selezione irresistibile di fritti."
             ],
             [
-                'name' => 'Messicana',
-                'description' => 'Ristoranti che servono piatti della cucina messicana.'
+                'name' => 'Kebab',
+                'description' => "Esplora i sapori orientali autentici con i nostri kebab. Carne marinata, verdure fresche e salse deliziose per un'esperienza culinaria unica."
             ],
             [
-                'name' => 'Vegetariana',
-                'description' => 'Ristoranti con opzioni vegetariane e vegane.'
+                'name' => 'Arancini',
+                'description' => "Arancini perfetti per uno spuntino sfizioso. Sperimenta la tradizione siciliana con i nostri bocconi di riso farciti con sapori ricchi e avvolgenti."
             ],
             [
-                'name' => 'Grill',
-                'description' => 'Ristoranti specializzati in grigliate e carne alla brace.'
+                'name' => 'Pizza',
+                'description' => "Pizze artigianali per ogni gusto. Dalla classica Margherita a combinazioni gourmet, ogni pizza è un'esplosione di freschezza e sapori italiani."
             ],
             [
-                'name' => 'Frutti di mare',
-                'description' => 'Ristoranti che offrono una selezione di piatti a base di frutti di mare.'
+                'name' => 'Sushi',
+                'description' =>     "Sushi fresco e artistico, pronto per deliziare il tuo palato. Dai tradizionali nigiri ai roll moderni, ogni pezzo è una festa di sapori giapponesi."
             ],
             [
-                'name' => 'Francese',
-                'description' => 'Ristoranti con cucina francese e specialità gastronomiche.'
+                'name' => 'Spesa',
+                'description' =>     "Semplifica la tua vita quotidiana ordinando da noi. Dalla spesa generale ai prodotti freschi, offriamo una vasta gamma di opzioni per le tue esigenze, consegnate comodamente a casa tua."
             ],
-            [
-                'name' => 'Caffetteria',
-                'description' => 'Luoghi accoglienti per gustare caffè, dolci e piccoli pasti.'
-            ],
-            [
-                'name' => 'Pasticceria',
-                'description' => 'Ristoranti specializzati in dolci, torte e prelibatezze da forno.'
-            ]
+
         ];
 
            foreach($categories as $category) {
@@ -61,6 +54,7 @@ class CategorySeeder extends Seeder
 
                 $new_category->name = $category['name'];
                 $new_category->description = $category['description'];
+
 
                 $new_category->save();
 
