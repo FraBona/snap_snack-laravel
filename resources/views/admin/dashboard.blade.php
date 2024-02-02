@@ -1,3 +1,8 @@
+<style>
+
+</style>
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +14,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">Riepilogo</div>
-                    <div class="card-body text-center d-flex justify-content-center gap-3">
+                    <div class="card-body align-items-center text-center d-flex justify-content-center gap-3">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -19,11 +24,11 @@
                         @if (!$restaurant)
                             <a href="{{ route('admin.restaurant.create') }}">Create</a>
                         @else
-                            <span>Il tuo ristorante é: </span><span><strong><a
+                            <span>Il tuo ristorante é: </span><span><strong><a class="btn btn-info"
                                         href="{{ route('admin.restaurant.show', $restaurant) }}">{{ $restaurant->name }}</a></strong></span>
                         @endif
-                        <a href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
-                        <a href="{{ route('admin.dishes.index') }}">i miei piatti</a>
+                        <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
+                        <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">I Miei Piatti</a>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<a href="{{route('admin.dishes.create')}}">Crezione piatto</a><br>
+<a href="{{route('admin.dishes.create')}}">Crea Piatto</a><br>
 @foreach ($dishes as $dish)
   <a href="{{route('admin.dishes.show',$dish)}}">{{$dish->name}}</a>
   <p>{{$dish->description}}</p>
