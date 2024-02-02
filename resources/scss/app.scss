@@ -1,4 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
+a { 
+    text-decoration: none;
+}
 
 nav img {
     width: 50px;
@@ -15,7 +18,7 @@ body {
 }
 
 .jumbotron {
-    min-height: calc(100vh - 76px);
+    min-height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
     align-items: center;
