@@ -17,7 +17,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
+        $user = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', '=', $user)->first();
+        $dishes = Dish::where('restaurant_id', '=', $restaurant->id)->get();
 
         return view('admin.dishes.index', compact('dishes'));
     }
@@ -88,6 +90,6 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dishes.index');
     }
 }
