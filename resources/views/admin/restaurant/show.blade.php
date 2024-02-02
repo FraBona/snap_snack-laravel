@@ -42,7 +42,7 @@
         <li class="infos">Il numero del tuo ristorante é: <strong>{{$restaurant->phone_number}}</strong></li>
         <li class="infos">La partita iva del tuo ristorante é: <strong>{{$restaurant->vat}}</strong></li>
         <ul class="d-flex gap-2 ps-0">
-            @foreach ($restaurant->categories as $category)
+            @foreach ($restaurants as $category)
               <li class="badge rounded-pill text-bg-primary">{{$category->name}}</li>
             @endforeach
           </ul>
