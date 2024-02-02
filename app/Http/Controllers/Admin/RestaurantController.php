@@ -57,8 +57,8 @@ class RestaurantController extends Controller
             ]);
             $data = $request->all();
             if ($request->hasFile('photo')) {
-                $fileName = time() . '.' . $request->photo->extension();
-                $request->photo->storeAs('public/images', $fileName);
+                $file_path = Storage::put('images', $request->photo);
+                $data['photo'] = $file_path;
             }
             $currentUser = Auth::user()->id;
             $arrayId = ['user_id' => $currentUser];
