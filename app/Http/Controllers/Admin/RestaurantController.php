@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
@@ -56,6 +57,7 @@ class RestaurantController extends Controller
                 'user_id' => 'nullable|exists:users,id'
             ]);
             $data = $request->all();
+            $data['slug'] = Str::slug($data['name'], '-');
             if ($request->hasFile('photo')) {
                 $file_path = Storage::put('images', $request->photo);
                 $data['photo'] = $file_path;
@@ -64,7 +66,7 @@ class RestaurantController extends Controller
             $arrayId = ['user_id' => $currentUser];
             $finalArray = array_merge($data, $arrayId);
             $new_restaurant = Restaurant::create($finalArray);
-        
+
             return redirect()->route('admin.restaurant.show', $new_restaurant);
         }
     }
