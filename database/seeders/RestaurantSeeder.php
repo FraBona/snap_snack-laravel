@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 class RestaurantSeeder extends Seeder
@@ -95,13 +96,13 @@ class RestaurantSeeder extends Seeder
         $userIds = $user->pluck('id');
 
         function getUniqueUserId($userIds, &$usedUserIds, $faker) {
-        
+
             do {
                 $userId = $faker->randomElement($userIds);
             } while (in_array($userId, $usedUserIds));
-        
+
             $usedUserIds[] = $userId;
-        
+
             return $userId;
         }
 
@@ -111,6 +112,7 @@ class RestaurantSeeder extends Seeder
             $new_restaurant = new Restaurant();
 
             $new_restaurant->name = $restaurant['name'];
+            $new_restaurant->slug = Str::slug($new_restaurant->name, '-');
             $new_restaurant->address = $restaurant['address'];
             $new_restaurant->phone_number = $restaurant['phone_number'];
             $new_restaurant->vat = $restaurant['vat'];
