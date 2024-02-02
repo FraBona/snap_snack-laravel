@@ -14,7 +14,9 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
@@ -22,7 +24,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dishes.create');
+
     }
 
     /**
@@ -30,7 +33,14 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255|string',
+            'description' => 'nullable|min:20|string',
+            'price'=> 'required|numeric|between:min,max',
+            'visible'=> '',
+        ]);
+
+
     }
 
     /**
@@ -38,7 +48,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+        //crea
     }
 
     /**
