@@ -12,6 +12,13 @@
       <input type="text" id="vat" name="vat" class="form-control">
       <label for="photo">Photo</label>
       <input type="file" name="photo" id="photo" class="form-control">
+      @foreach ($categories as $category)
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" value="{{$category->id}}" name="category[]" id="category-{{$category->id}}" @checked(in_array($category->id, old('categories',[])))>
+                <label for="category-{{$category->id}}" class="form-check-label">{{$category->name}}</label>
+              </div>
+            @endforeach
+
 
       <input type="submit" value="Submit">
   </form>
