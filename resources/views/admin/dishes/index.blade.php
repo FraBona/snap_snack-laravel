@@ -31,7 +31,6 @@
     }
 
 </style>
-
 @extends('layouts.app')
 @section('content')
     <div class="container">
@@ -57,13 +56,16 @@
                       <a class="btn btn-warning mb-3" href="{{ route('admin.dishes.edit', $dish) }}">Modifica il piatto</a>
                       <form action="{{ route('admin.dishes.destroy', $dish) }}" method="post">
                           @csrf
-  
-    <input type="submit" value="delete" onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
-  </form>
-  </div>
-  </div>
-  
-@endforeach
-</div>
-</div>
+                          @method('DELETE')
+
+                          <input type="submit" value="Delete"
+                              onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
+                      </form>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+    </div>
 @endsection
