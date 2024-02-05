@@ -1,12 +1,35 @@
-<img class="w-100" src="{{asset('storage/' . $dish->photo)}}" alt="photo-restaurant">
-<h1>{{$dish->name}}</h1>
-<h1>{{$dish->description}}</h1>
-<h1>{{$dish->price}}</h1>
+<style>
+    .img-dish {
+        min-width: 200px;
+        min-height: 150px;
+        max-width: 200px;
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: 1rem;
+    }
 
-<form action="{{route('admin.dishes.destroy', $dish)}}" method="post">
-  @csrf
-  @method('DELETE')
+    .dish-title {
+      font-size: 24px;
+      font-weight: 800;
+    }
+</style>
+@extends('layouts.app')
+@section('content')
+    <div class="container">
+      <img class="img-dish mt-5" src="{{ asset('storage/' . $dish->photo) }}" alt="photo-restaurant">
+      <ul>
+        <li class="dish-title"><strong>{{ $dish->name }}</strong></li>
+        <li><strong>{{ $dish->description }}</strong></li>
+        <li><strong>{{ $dish->price }}</strong></li>
+      </ul>
+      <form action="{{ route('admin.dishes.destroy', $dish) }}" method="post">
+          @csrf
+          @method('DELETE')
+  
+          <input class="btn btn-danger" type="submit" value="Delete"
+              onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
+      </form>
+      <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">Torna alla home page dei Piatti</a>
+    </div>
 
-  <input type="submit" value="delete" onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
-</form>
-<a href="{{route('admin.dishes.index')}}">Torna alla home page dei piatti</a>
+@endsection
