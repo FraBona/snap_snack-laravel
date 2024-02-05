@@ -11,8 +11,15 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'categories'
+    protected $fillable = [
+        'name',
+        'address',
+        'phone_number',
+        'vat',
+        'photo',
+        'user_id',
+        'slug',
+        'visible'
     ];
 
     public function categories()

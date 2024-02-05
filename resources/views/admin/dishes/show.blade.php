@@ -29,7 +29,7 @@
           <input class="btn btn-danger" type="submit" value="Delete"
               onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
       </form>
-      <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">Torna alla home page dei Piatti</a>
+      <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">Torna al tuo Menu</a>
     </div>
 
 @endsection

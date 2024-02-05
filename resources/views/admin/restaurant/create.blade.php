@@ -8,7 +8,9 @@
     }
 
     .center-content {
+
         height: calc(100vh - 70px);
+
         display: flex;
         justify-content: center;
         align-items: center;

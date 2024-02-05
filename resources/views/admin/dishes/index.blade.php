@@ -35,6 +35,7 @@
 @section('content')
     <div class="container">
         <a class="btn btn-success mt-5 mb-5" href="{{ route('admin.dishes.create') }}">Crea Piatto</a>
+        <h2 class="text-center pb-5 font-weight-bold">Il Menu</h2>
     </div>
 
 

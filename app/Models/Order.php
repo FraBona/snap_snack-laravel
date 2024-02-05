@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
+// DA IMPLEMENTARE IL FILLABLE DATO CHE ANCORA NON ABBIAMO FATTO LA CRUD DEGLI ORDINI :
+    protected $guarded = [
 
     ];
 
