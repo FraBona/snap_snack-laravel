@@ -90,7 +90,7 @@ class DishSeeder extends Seeder
         $restaurant = Restaurant::all();
         // $restaurantIds = $restaurant->pluck('id');
 
-        foreach($dishes as $dish) {
+        foreach ($dishes as $dish) {
 
             $new_dish = new Dish();
 
@@ -105,6 +105,6 @@ class DishSeeder extends Seeder
 
             // $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
 
-       }
+        }
     }
 }

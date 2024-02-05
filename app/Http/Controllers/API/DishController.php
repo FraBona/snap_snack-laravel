@@ -13,7 +13,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        $results = Dish::all();
+        $results = Dish::all()->loadExists('restaurant');
 
         return response()->json([
             'dishes' => $results,
@@ -34,10 +34,10 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        $dish->load('restaurant');
+        $dish->loadExists('restaurant');
         return response()->json([
             'dish' => $dish
-        ]); 
+        ]);
     }
 
     /**

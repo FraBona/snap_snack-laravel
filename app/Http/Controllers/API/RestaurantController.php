@@ -13,7 +13,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $results = Restaurant::all();
+        $results = Restaurant::all()->load(['categories', 'user']);
 
         return response()->json([
             'restaurants' => $results,
@@ -34,12 +34,12 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        $restaurant->load('categories');
+        $restaurant->load(['categories', 'user']);
         return response()->json([
             'restaurant' => $restaurant,
         ]);
     }
-    
+
 
     /**
      * Update the specified resource in storage.
