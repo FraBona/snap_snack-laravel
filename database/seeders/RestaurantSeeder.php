@@ -19,74 +19,81 @@ class RestaurantSeeder extends Seeder
     {
         $restaurants = [
             [
-                'name' => 'Ristorante Uno',
-                'address' => 'Via Roma, 123',
-                'phone_number' => '+39 123 456789',
-                'vat' => '1234',
-                'photo' => 'https://example.com/ristorante_uno.jpg'
+                'name' => 'Hanami Sushi',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/6RJ7cqD/sushi-2.webp'
             ],
             [
-                'name' => 'Cuisine Fusion',
-                'address' => 'Street 456, City Center',
-                'phone_number' => '+1 555 7890123',
-                'vat' => '123',
-                'photo' => 'https://example.com/cuisine_fusion.jpg'
+                'name' => 'Yuzu Sushi',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/5xCw9my/sushi.webp'
             ],
             [
-                'name' => 'Sushi Time',
-                'address' => '123 Sushi Street',
-                'phone_number' => '+81 90 1234 5678',
-                'vat' => '532',
-                'photo' => 'https://example.com/sushi_time.jpg'
+                'name' => 'Il Grottino',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/vJfHN98/pizza-2.jpg'
             ],
             [
-                'name' => 'Pizzeria Bella',
-                'address' => 'Piazza del Popolo, 7',
-                'phone_number' => '+39 333 444555',
-                'vat' => '333',
-                'photo' => 'https://example.com/pizzeria_bella.jpg'
+                'name' => 'Antica Santa Lucia',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/KVyCy24/pizza.webp'
             ],
             [
-                'name' => 'Mexican Flavor',
-                'address' => 'Avenida de los Tacos, 321',
-                'phone_number' => '+52 55 6789 0123',
-                'vat' => '222',
-                'photo' => 'https://example.com/mexican_flavor.jpg'
+                'name' => 'Ke Palle',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/7y2mYcC/arancini.webp'
             ],
             [
-                'name' => 'Vegetarian Delight',
-                'address' => 'Green Avenue, 789',
-                'phone_number' => '+1 123 4567890',
-                'vat' => '211',
-                'photo' => 'https://example.com/vegetarian_delight.jpg'
+                'name' => 'Soul Kitchen',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/TbfCCHS/kebab.webp'
             ],
             [
-                'name' => 'Steakhouse Supreme',
-                'address' => 'Prime Rib Road, 456',
-                'phone_number' => '+1 987 6543210',
-                'vat' => '153',
-                'photo' => 'https://example.com/steakhouse_supreme.jpg'
+                'name' => 'Semu Fritti',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/3zdsdK7/fritti.jpg'
             ],
             [
-                'name' => 'Seafood Haven',
-                'address' => 'Oceanfront Drive, 567',
-                'phone_number' => '+44 20 1234 5678',
-                'vat' => '3533',
-                'photo' => 'https://example.com/seafood_haven.jpg'
+                'name' => 'Mastro Ciccio',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/f826Xjc/italiano.webp'
             ],
             [
-                'name' => 'Café de Paris',
-                'address' => 'Rue de la Croissant, 890',
-                'phone_number' => '+33 1 2345 6789',
-                'vat' => '666',
-                'photo' => 'https://example.com/cafe_de_paris.jpg'
+                'name' => 'Jumpa',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/ZY9f2Wf/hamburger.webp'
             ],
             [
-                'name' => 'Indian Spyce Hub',
-                'address' => 'Curry Lane, 123',
-                'phone_number' => '+91 80 9876 5432',
-                'vat' => '888',
-                'photo' => 'https://example.com/indian_spice_hub.jpg'
+                'name' => 'Ipercoop',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/sCQXV1W/spesa-2.webp'
+            ],
+            [
+                'name' => 'Esselunga',
+                'address' => $faker->streetAddress(),
+                'phone_number' => $faker->phoneNumber(),
+                'vat' => $faker->vat(),
+                'photo' => 'https://i.ibb.co/8bFdz4s/spesa.jpg'
             ]
         ];
 
