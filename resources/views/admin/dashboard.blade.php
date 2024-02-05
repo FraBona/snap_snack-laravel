@@ -30,7 +30,9 @@
                         @endif
                         @if ($restaurant)
                             <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
-                            <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">I Miei Piatti</a>
+                            @if ($dishes)
+                                <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">I Miei Piatti</a>
+                            @endif
                         @endif
                     </div>
                 </div>
