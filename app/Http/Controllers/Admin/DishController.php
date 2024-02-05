@@ -42,7 +42,7 @@ class DishController extends Controller
         $user = Auth::user()->id;
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
         $request->validate([
-            'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
+            'name' => 'required|regex:/[a-zA-Z\s]+/|max:30|string',
             'description' => 'nullable|min:20|string',
             'price'=> 'required|numeric|between:0,9999.99',
             'visible' => 'boolean',
@@ -83,7 +83,7 @@ class DishController extends Controller
     public function update(UpdateDishRequest $request, Dish $dish)
     {
         $request->validate([
-            'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
+            'name' => 'required|regex:/[a-zA-Z\s]+/|max:30|string',
             'description' => 'nullable|min:20|string',
             'price'=> 'required|numeric|between:0,9999.99',
             'visible' => 'boolean',

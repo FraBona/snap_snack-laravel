@@ -49,7 +49,7 @@ class RestaurantController extends Controller
             return redirect()->route('admin.dashboard');
         } else {
             $request->validate([
-                'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
+                'name' => 'required|regex:/[a-zA-Z\s]+/|max:30|string',
                 'address' => 'required|max:255|string',
                 'phone_number' => 'required|regex:/[0-9]+/|max:30|string',
                 'vat' => 'required|max:11|min:11|string',
