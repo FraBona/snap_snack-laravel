@@ -22,7 +22,7 @@
                         @endif  
                         <strong>{{ __('You are logged in!') }}</strong>
                         @if (!$restaurant)
-                            <a href="{{ route('admin.restaurant.create') }}">Create</a>
+                            <a class="btn btn-primary" href="{{ route('admin.restaurant.create') }}">Create</a>
                         @else
                             <span>Il tuo ristorante é: </span><span><strong><a class="btn btn-info"
                                         href="{{ route('admin.restaurant.show', $restaurant) }}">{{ $restaurant->name }}</a></strong></span>
