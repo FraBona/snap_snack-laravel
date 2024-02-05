@@ -14,10 +14,11 @@
         align-items: center;
     }
 </style>
-
-<div class="center-content">
-    @if (!$restaurant)
-        <div class="container">
+@extends('layouts.app')
+@section('content')
+    <div class="center-content">
+        @if (!$restaurant)
+            <div class="container">
                 <form class="form py-5 row g-3 justify-content-center" action="{{ route('admin.restaurant.store') }}"
                     method="post" enctype="multipart/form-data">
                     @csrf
@@ -42,33 +43,33 @@
                         <label for="photo">Photo</label>
                         <input type="file" name="photo" id="photo" class="form-control">
                     </div>
-
-                    @foreach ($categories as $category)
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" value="{{ $category->id }}"
-                                name="category[]" id="category-{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
-                            <label for="category-{{ $category->id }}"
-                                class="form-check-label">{{ $category->name }}</label>
-                        </div>
-                    @endforeach
-                    <input type="submit" value="Submit">
+                    <div class="mt-5 d-flex gap-5 justify-content-center">
+                        @foreach ($categories as $category)
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" value="{{ $category->id }}"
+                                    name="category[]" id="category-{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
+                                <label for="category-{{ $category->id }}"
+                                    class="form-check-label">{{ $category->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <input class="btn btn-success w-25 mt-5" type="submit" value="Submit">
                 </form>
-        </div>
-    @endif
-</div>
+            </div>
+        @endif
+    </div>
+
+    <div class="row">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
 
-
-
-
-<div class="row">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-</div>
+@endsection
