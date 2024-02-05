@@ -8,7 +8,7 @@
     }
 
     .center-content {
-        height: calc(100vh - 70px);
+        height: calc(100vh - 76px);
         display: flex;
         justify-content: center;
         align-items: center;
