@@ -44,7 +44,7 @@ img {
   color: white;
 }
 </style>
-@dd($restaurant)
+
 <section class="restaurant-show py-4">
   <div class="restaurant-card">
     <ul class=" py-5 rest-ul d-flex flex-column justify-content-center align-items-center gap-4">
@@ -57,7 +57,7 @@ img {
         <li class="infos">Il numero del tuo ristorante é: <strong>{{$restaurant->phone_number}}</strong></li>
         <li class="infos">La partita iva del tuo ristorante é: <strong>{{$restaurant->vat}}</strong></li>
         <ul class="d-flex gap-2 ps-0">
-            @foreach ($restaurants as $category)
+            @foreach ($restaurant->categories as $category)
               <li class="badge rounded-pill text-bg-primary">{{$category->name}}</li>
             @endforeach
           </ul>
