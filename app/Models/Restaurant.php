@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Category;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,22 +12,26 @@ class Restaurant extends Model
     use HasFactory;
 
     protected $guarded = [
-       'categories'
+        'categories'
     ];
 
-    public function categories(){
-        return $this->belongsToMany(Category::class,'category_restaurant', 'category_id', 'restaurant_id');
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
-    public function users() {
+    public function users()
+    {
 
         return $this->belongsTo(User::class);
     }
 
-    public function orders() {
+    public function orders()
+    {
 
         return $this->belongsTo(Order::class);
     }
-    public function dish() {
+    public function dish()
+    {
 
         return $this->hasMany(Dish::class);
     }

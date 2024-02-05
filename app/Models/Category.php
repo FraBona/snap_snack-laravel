@@ -10,7 +10,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function restaurants(){
-        return $this->belongsToMany(Restaurant::class, 'category_restaurant', 'category_id', 'restaurant_id');
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
     }
 }

@@ -95,7 +95,8 @@ class RestaurantSeeder extends Seeder
         $user = User::all();
         $userIds = $user->pluck('id');
 
-        function getUniqueUserId($userIds, &$usedUserIds, $faker) {
+        function getUniqueUserId($userIds, $usedUserIds, $faker)
+        {
 
             do {
                 $userId = $faker->randomElement($userIds);
@@ -108,7 +109,7 @@ class RestaurantSeeder extends Seeder
 
         $data = [];
 
-        foreach($restaurants as $restaurant){
+        foreach ($restaurants as $restaurant) {
             $new_restaurant = new Restaurant();
 
             $new_restaurant->name = $restaurant['name'];
