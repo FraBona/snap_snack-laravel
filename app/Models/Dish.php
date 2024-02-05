@@ -9,7 +9,13 @@ class Dish extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'photo',
+        'restaurant_id',
+    ];
 
     public function orders()
     {
