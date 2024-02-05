@@ -31,11 +31,10 @@ class RestaurantController extends Controller
         $user = Auth::user()->id;
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
         $categories = Category::all();
-        if($restaurant){
-           return redirect()->route('admin.dashboard');
-        }
-        else{
-            return view('admin.restaurant.create', compact('user', 'restaurant','categories'));
+        if ($restaurant) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return view('admin.restaurant.create', compact('user', 'restaurant', 'categories'));
         }
     }
 
@@ -46,10 +45,9 @@ class RestaurantController extends Controller
     {
         $user = Auth::user()->id;
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
-        if($restaurant){
-           return redirect()->route('admin.dashboard');
-        }
-        else{
+        if ($restaurant) {
+            return redirect()->route('admin.dashboard');
+        } else {
             $request->validate([
                 'name' => 'required|regex:/[a-zA-Z\s]+/|max:255|string',
                 'address' => 'required|max:255|string',
@@ -73,11 +71,12 @@ class RestaurantController extends Controller
             $arrayId = ['user_id' => $currentUser];
             $finalArray = array_merge($data, $arrayId);
 
+
             $new_restaurant = Restaurant::create($finalArray);
 
 
-            if ($request->has('categories')) {
-                $new_restaurant->categories()->attach($finalArray['categories']);
+            if ($request->has('category')) {
+                $new_restaurant->categories()->sync($finalArray['category']);
             }
 
             return redirect()->route('admin.restaurant.show', $new_restaurant);
