@@ -16,7 +16,7 @@ class DashboardController extends Controller
         //$restaurants = Restaurant::all();
         $user = Auth::user()->id;
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
-        $dishes = Dish::where('restaurant_id', '=', $restaurant->id)->first();
+        //$dishes = Dish::where('restaurant_id', '=', $restaurant->id)->first();
 
         /*  $exist = false;
         foreach($restaurants as $restaurant){
@@ -25,6 +25,6 @@ class DashboardController extends Controller
             }
         }*/
 
-        return view('admin.dashboard', compact('user', 'restaurant', 'dishes'));
+        return view('admin.dashboard', compact('user', 'restaurant'));
     }
 }

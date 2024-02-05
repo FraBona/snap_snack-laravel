@@ -10,5 +10,5 @@
   
     <input type="submit" value="delete" onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
   </form>
-  
+  <a href="{{route('admin.dashboard')}}">Torna alla home page</a>
 @endforeach

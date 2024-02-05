@@ -24,24 +24,24 @@
                     @csrf
                     <div class="col-md-6">
                         <label for="name">Name</label>
-                        <input class="form-control" type="text" id="name" name="name" class="form-control">
+                        <input class="form-control" type="text" id="name" name="name" class="form-control" value="{{Request::old('name')}}">
                     </div>
                     <div class="col-md-6">
                         <label for="address">Address</label>
-                        <input class="form-control" type="text" id="address" name="address" class="form-control">
+                        <input class="form-control" type="text" id="address" name="address" class="form-control" value="{{Request::old('address')}}">
                     </div>
                     <div class="col-md-12">
                         <label for="phone_number">Phone Number</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
-                            class="form-control">
+                            class="form-control" value="{{Request::old('phone_number')}}">
                     </div>
                     <div class="col-md-6">
                         <label for="vat">Vat</label>
-                        <input class="form-control" type="text" id="vat" name="vat" class="form-control">
+                        <input class="form-control" type="text" id="vat" name="vat" class="form-control" value="{{Request::old('vat')}}">
                     </div>
                     <div class="col-md-6">
                         <label for="photo">Photo</label>
-                        <input type="file" name="photo" id="photo" class="form-control">
+                        <input type="file" name="photo" id="photo" class="form-control" value="{{Request::old('photo')}}">
                     </div>
                     <div class="mt-5 d-flex gap-5 justify-content-center">
                         @foreach ($categories as $category)
