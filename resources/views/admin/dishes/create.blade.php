@@ -23,20 +23,20 @@
             @csrf
             <div class="col-md-6">
                 <label for="name">Nome piatto</label>
-                <input class="form-control" type="text" id="name" name="name" required>
+                <input class="form-control" type="text" id="name" name="name"  value="{{Request::old('name')}}" required>
             </div>
     
             <div class="col-md-6">
                 <label for="price">Prezzo piatto</label>
-                <input class="form-control" type="number" step="0.1" name="price" id="price" required>
+                <input class="form-control" type="number" step="0.1" name="price" id="price" value="{{Request::old('price')}}" required>
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto</label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
             </div>
             <div class="col-md-12">
                 {{-- <label for="photo">Aggiungi Foto</label> --}}
-                <input class="form-control" type="file" name="photo" id="photo">
+                <input class="form-control" type="file" name="photo" id="photo" value="{{Request::old('photo')}}">
             </div>
             <input class="btn btn-success w-25 mt-5" type="submit" value="Invia">
         </form>

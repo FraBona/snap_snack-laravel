@@ -17,18 +17,21 @@
                     <div class="card-body align-items-center text-center d-flex justify-content-center gap-3">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                                Bene! Sei loggato
                             </div>
-                        @endif  
-                        <strong>{{ __('You are logged in!') }}</strong>
+                        @endif
+                        <strong>Bene! Sei loggato</strong>
                         @if (!$restaurant)
-                            <a class="btn btn-primary" href="{{ route('admin.restaurant.create') }}">Create</a>
+                            <a class="btn btn-primary" href="{{ route('admin.restaurant.create') }}">Aggiungi il tuo
+                                ristorante</a>
                         @else
                             <span>Il tuo ristorante é: </span><span><strong><a class="btn btn-info"
                                         href="{{ route('admin.restaurant.show', $restaurant) }}">{{ $restaurant->name }}</a></strong></span>
                         @endif
-                        <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
-                        <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">I Miei Piatti</a>
+                        @if ($restaurant)
+                            <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
+                            <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">I Miei Piatti</a>
+                        @endif
                     </div>
                 </div>
             </div>
