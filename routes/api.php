@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DishController;
 use App\Http\Controllers\API\RestaurantController;
+use App\Http\Controllers\API\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,4 @@ Route::get('/dishes', [DishController::class, 'index']);
 Route::get('/dish/{dish:id}', [DishController::class, 'show']);
 Route::get('/restaurants', [RestaurantController::class, 'index']);
 Route::get('/restaurant/{restaurant:slug}', [RestaurantController::class, 'show']);
+Route::get('/categories', [CategoryController::class, 'index']);
