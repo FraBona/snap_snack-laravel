@@ -57,22 +57,21 @@
                         @endforeach
                     </div>
                     <input class="btn btn-success w-25 mt-5" type="submit" value="Submit">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 </form>
             </div>
         @endif
     </div>
 
-    <div class="row">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
+      
 
 
 @endsection
