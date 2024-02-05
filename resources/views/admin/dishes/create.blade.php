@@ -39,22 +39,17 @@
                 <input class="form-control" type="file" name="photo" id="photo" value="{{Request::old('photo')}}">
             </div>
             <input class="btn btn-success w-25 mt-5" type="submit" value="Invia">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         </form>
     </div>
 </section>
-
-
-    {{-- errori --}}
-        <div class="row">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
 
 @endsection
