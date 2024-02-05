@@ -24,26 +24,29 @@
                     @csrf
                     <div class="col-md-6">
                         <label for="name">Name</label>
-                        <input class="form-control" type="text" id="name" name="name" class="form-control" value="{{Request::old('name')}}">
+                        <input class="form-control" type="text" id="name" name="name" class="form-control" value="{{Request::old('name')}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="address">Address</label>
-                        <input class="form-control" type="text" id="address" name="address" class="form-control" value="{{Request::old('address')}}">
+                        <input class="form-control" type="text" id="address" name="address" class="form-control" value="{{Request::old('address')}}" required>
                     </div>
                     <div class="col-md-12">
                         <label for="phone_number">Phone Number</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
-                            class="form-control" value="{{Request::old('phone_number')}}">
+                            class="form-control" value="{{Request::old('phone_number')}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="vat">Vat</label>
-                        <input class="form-control" type="text" id="vat" name="vat" class="form-control" value="{{Request::old('vat')}}">
+                        <input class="form-control" type="text" id="vat" name="vat" class="form-control" value="{{Request::old('vat')}}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="photo">Photo</label>
                         <input type="file" name="photo" id="photo" class="form-control" value="{{Request::old('photo')}}">
                     </div>
                     <div class="mt-5 d-flex gap-5 justify-content-center">
+                        <span class="text-center"><strong>
+                            Consigliabile scegliere almeno una delle seguenti categorie per una corretta indicizzazione del ristorante:
+                            </strong></span>
                         @foreach ($categories as $category)
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" value="{{ $category->id }}"
