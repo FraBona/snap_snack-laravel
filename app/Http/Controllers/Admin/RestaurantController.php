@@ -55,7 +55,7 @@ class RestaurantController extends Controller
                 'vat' => 'required|max:11|min:11|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
                 'user_id' => 'nullable|exists:users,id',
-                'category' => 'required|array|min:2'
+                'category' => 'required|array|min:1'
             ]);
             $data = $request->all();
 
