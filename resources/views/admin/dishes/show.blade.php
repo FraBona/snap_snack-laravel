@@ -26,8 +26,8 @@
           @csrf
           @method('DELETE')
   
-          <input class="btn btn-danger" type="submit" value="Delete"
-              onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
+          <input class="btn btn-danger" type="submit" value="Cancella"
+              onclick="return confirm('sei sicuro di voler cancellare?')" class="btn btn-danger">
       </form>
       <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">Torna al tuo Menu</a>
     </div>

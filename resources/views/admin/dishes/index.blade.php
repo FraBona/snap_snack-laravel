@@ -59,7 +59,7 @@
                           @csrf
                           @method('DELETE')
 
-                          <input type="submit" value="Delete"
+                          <input type="submit" value="Cancella"
                               onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
                       </form>
                     </div>
