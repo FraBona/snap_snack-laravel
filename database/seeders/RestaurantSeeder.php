@@ -128,7 +128,7 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->user_id = getUniqueUserId($userIds, $data, $faker);
 
             $new_restaurant->save();
-            $new_restaurant->categories()->attach($faker->randomElement($categoryIds));
+            $new_restaurant->categories()->attach($faker->randomElements($categoryIds, random_int(1, 3)));
         }
     }
 }
