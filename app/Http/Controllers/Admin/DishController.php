@@ -43,7 +43,7 @@ class DishController extends Controller
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
         $request->validate([
             'name' => 'required|regex:/[a-zA-Z\s]+/|min:4|max:30|string',
-            'description' => 'required|min:20|max:255|string',
+            'description' => 'required|min:10|max:255|string',
             'price'=> 'required|numeric|between:0,9999.99',
             'visible' => 'boolean',
             'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
