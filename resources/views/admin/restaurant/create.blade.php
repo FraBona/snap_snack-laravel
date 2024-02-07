@@ -40,16 +40,19 @@
                         <label for="address">Indirizzo *</label>
                         <input class="form-control" type="text" id="address" name="address" class="form-control"
                             value="{{ Request::old('address') }}" >
+                            <span class="color-red" id="address-error"></span>
                     </div>
                     <div class="col-4 col-md-12">
                         <label for="phone_number">Numero di Telefono *</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
                             class="form-control" value="{{ Request::old('phone_number') }}" >
+                            <span class="color-red" id="phone-error"></span>
                     </div>
                     <div class="col-3 col-md-6">
                         <label for="vat">Vat *</label>
                         <input class="form-control" type="text" id="vat" name="vat" class="form-control"
                             value="{{ Request::old('vat') }}" >
+                            <span class="color-red" id="vat-error"></span>
                     </div>
                     <div class="col-5 col-md-6">
                         <label for="photo">Foto</label>
@@ -92,7 +95,14 @@
         document.getElementById('restaurant-form').addEventListener('submit', function(event) {
             let name = document.getElementById('name').value.trim();
             let nameError = document.getElementById('name-error');
+            let address = document.getElementById('address').value.trim();
+            let addressError = document.getElementById('address-error');
+            let phone = document.getElementById('phone_number').value.trim();
+            let phoneError = document.getElementById('phone-error');
+            let vat = document.getElementById('vat').value.trim();
+            let vatError = document.getElementById('vat-error');
             let errors = false;
+
 
             // Validazione del nome (esempio)
             if (name === '') {
@@ -100,6 +110,27 @@
                 errors = true;
             } else {
                 nameError.textContent = '';
+            }
+
+            if (address === '') {
+                addressError.textContent = 'Inserisci il giusto indirizzo';
+                errors = true;
+            } else {
+                address.textContent = '';
+            }
+
+            if (phone === '') {
+                phoneError.textContent = 'Inserisci almeno 9 cifre';
+                errors = true;
+            } else {
+                phone.textContent = '';
+            }
+
+            if (vat === '') {
+                vatError.textContent = 'Inserisci 11 cifre per la vat';
+                errors = true;
+            } else {
+                vat.textContent = '';
             }
 
             // Impedisci l'invio del form se ci sono errori
