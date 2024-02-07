@@ -56,7 +56,7 @@ class RestaurantController extends Controller
                 'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
                 'user_id' => 'nullable|exists:users,id',
                 'categories' => 'exists:categories,id'
-            ]);
+            ]);                                               
             $data = $request->all();
 
 
