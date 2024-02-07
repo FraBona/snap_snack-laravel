@@ -84,8 +84,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sì, elimina!',
-                cancelButtonText: 'Annulla'
+                confirmButtonText: 'Elimina il Piatto!',
+                cancelButtonText: 'Torna indietro'
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.submit();
