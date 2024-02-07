@@ -107,7 +107,6 @@
             let phone_number = document.getElementById('phone_number').value.trim();
             let vat = document.getElementById('vat').value.trim();
             let inputs = document.querySelectorAll('.checkboxes');
-            console.log(inputs);
 
             let isOneChecked = Array.from(inputs).some(function(input) {
                 return input.checked;
