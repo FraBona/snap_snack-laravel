@@ -33,26 +33,26 @@
                     <div class="col-6 col-md-6">
                         <label for="name">Nome *</label>
                         <input class="form-control" type="text" id="name" name="name" class="form-control"
-                            value="{{ Request::old('name') }}" >
-                        <span class="color-red" id="name-error"></span>
+                            value="{{ Request::old('name') }}">
+                        <span class="color-red" id="name_error"></span>
                     </div>
                     <div class="col-6 col-md-6">
                         <label for="address">Indirizzo *</label>
                         <input class="form-control" type="text" id="address" name="address" class="form-control"
-                            value="{{ Request::old('address') }}" >
-                            <span class="color-red" id="address-error"></span>
+                            value="{{ Request::old('address') }}">
+                            <span class="color-red" id="address_error"></span>
                     </div>
                     <div class="col-4 col-md-12">
                         <label for="phone_number">Numero di Telefono *</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
-                            class="form-control" value="{{ Request::old('phone_number') }}" >
-                            <span class="color-red" id="phone-error"></span>
+                            class="form-control" value="{{ Request::old('phone_number') }}">
+                            <span class="color-red" id="phone_number_error"></span>
                     </div>
                     <div class="col-3 col-md-6">
                         <label for="vat">Vat *</label>
                         <input class="form-control" type="text" id="vat" name="vat" class="form-control"
-                            value="{{ Request::old('vat') }}" >
-                            <span class="color-red" id="vat-error"></span>
+                            value="{{ Request::old('vat') }}">
+                            <span class="color-red" id="vat_error"></span>
                     </div>
                     <div class="col-5 col-md-6">
                         <label for="photo">Foto</label>
@@ -92,45 +92,52 @@
     </div>
 
     <script async>
+        // aggancio la funzione al form : 
         document.getElementById('restaurant-form').addEventListener('submit', function(event) {
+
+            // recupero gli elementi del DOM : 
+
             let name = document.getElementById('name').value.trim();
-            let nameError = document.getElementById('name-error');
             let address = document.getElementById('address').value.trim();
-            let addressError = document.getElementById('address-error');
-            let phone = document.getElementById('phone_number').value.trim();
-            let phoneError = document.getElementById('phone-error');
+            let phone_number = document.getElementById('phone_number').value.trim();
             let vat = document.getElementById('vat').value.trim();
-            let vatError = document.getElementById('vat-error');
+
+            // recupero gli span di errore 
+            let name_error = document.getElementById('name-error');
+            let address_error = document.getElementById('address_error');
+            let phone_number_error =  document.getElementById('phone_number_error');
+            let vat_error =  document.getElementById('phone_number_error');
+            // inizzializzo l'errore a false : 
             let errors = false;
 
+            // Validations : 
 
-            // Validazione del nome (esempio)
-            if (name === '') {
-                nameError.textContent = 'Il nome del ristorante è obbligatorio';
+            if (name === '' || name.length < 3 || name.length > 30 || !isNumber(name)) {
+                name_error.textContent = 'Assicurati di inserire un Nome valido';
                 errors = true;
             } else {
                 nameError.textContent = '';
             }
-
-            if (address === '') {
-                addressError.textContent = 'Inserisci il giusto indirizzo';
+            if (address === '' || address.length < 10 || address.length > 30 || !isNumber(address)) {
+                address_error.textContent = 'Inserisci un Indirizzo valido';
                 errors = true;
             } else {
-                address.textContent = '';
+                address_error.textContent = '';
+            }
+            if (phone_number === '' || phone_number.length < 9 || phone_number.length > 10 || !(phone_number.matches(
+                    "[0-9]+"))) {
+                phone_number_error.textContent = 'Assicurati di inserire un Telefono valido';
+                errors = true;
+            } else {
+                phone_number_error.textContent = '';
             }
 
-            if (phone === '') {
-                phoneError.textContent = 'Inserisci almeno 9 cifre';
+            if (vat === ''|| vat != 11 || !(vat.matches(
+                    "[0-9]+")) ) {
+                vat_error.textContent = 'Inserisci la descrizione';
                 errors = true;
             } else {
-                phone.textContent = '';
-            }
-
-            if (vat === '') {
-                vatError.textContent = 'Inserisci 11 cifre per la vat';
-                errors = true;
-            } else {
-                vat.textContent = '';
+                vat_error.textContent = '';
             }
 
             // Impedisci l'invio del form se ci sono errori
