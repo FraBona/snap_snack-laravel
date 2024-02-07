@@ -12,7 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    }    
+    }
 </style>
 
 @extends('layouts.app')
@@ -25,14 +25,14 @@
                 <label for="name">Nome piatto *</label>
                 <input class="form-control" type="text" id="name" name="name"  value="{{Request::old('name')}}" required>
             </div>
-    
+
             <div class="col-md-6">
                 <label for="price">Prezzo piatto *</label>
                 <input class="form-control" type="number" step="0.1" name="price" id="price" value="{{Request::old('price')}}" required>
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="3" value="{{Request::old('description')}}" ></textarea>
             </div>
             <div class="col-md-12">
                 {{-- <label for="photo">Aggiungi Foto</label> --}}

@@ -55,7 +55,7 @@
                     <p>{{ $dish->price }}&euro;</p>
                     <div class="buttons-wrapper">
                       <a class="btn btn-warning mb-3" href="{{ route('admin.dishes.edit', $dish) }}">Modifica il piatto</a>
-                      <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" class="dish-delete-alert">
+                      <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" id="{{$dish->name, $dish->photo}}" class="dish-delete-alert">
                           @csrf
                           @method('DELETE')
 
@@ -76,15 +76,17 @@
         const deleteForms = document.querySelectorAll('.dish-delete-alert');
         deleteForms.forEach(form => {
             form.addEventListener('submit', function(e) {
+
                 e.preventDefault();
                 Swal.fire({
                 title: 'Attenzione',
-                text: "Non potrai più recuperare questo piatto!",
+                iconHtml: '<div><img widht="50px" height="50" src="https://images.pexels.com/photos/2113125/pexels-photo-2113125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""></div>',
+                html:  `<h1>Sei sicuro di voler eliminare:</h1> </br>  ${e.target.id} `,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Elimina il Piatto!',
+                confirmButtonText: 'Elimina il Piatto',
                 cancelButtonText: 'Torna indietro'
             }).then((result) => {
                 if (result.isConfirmed) {
