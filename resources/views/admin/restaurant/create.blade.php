@@ -17,43 +17,51 @@
 
 
     }
+
+    .color-red {
+        color: red
+    }
 </style>
 @extends('layouts.app')
 @section('content')
     <div class="center-content">
         @if (!$restaurant)
             <div class="container center-content p-2">
-                <form class="form row py-2 g-3 justify-content-center" action="{{ route('admin.restaurant.store') }}"
-                    method="post" enctype="multipart/form-data">
+                <form id="restaurant-form" class="form row py-2 g-3 justify-content-center"
+                    action="{{ route('admin.restaurant.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-6 col-md-6">
-                        <label for="name">Name</label>
-                        <input class="form-control" type="text" id="name" name="name" class="form-control" value="{{Request::old('name')}}" required>
+                        <label for="name">Nome *</label>
+                        <input class="form-control" type="text" id="name" name="name" class="form-control"
+                            value="{{ Request::old('name') }}" >
+                        <span class="color-red" id="name-error"></span>
                     </div>
                     <div class="col-6 col-md-6">
-                        <label for="address">Address</label>
-                        <input class="form-control" type="text" id="address" name="address" class="form-control" value="{{Request::old('address')}}" required>
+                        <label for="address">Indirizzo *</label>
+                        <input class="form-control" type="text" id="address" name="address" class="form-control"
+                            value="{{ Request::old('address') }}" >
+                            <span class="color-red" id="address-error"></span>
                     </div>
                     <div class="col-4 col-md-12">
-                        <label for="phone_number">Phone Number</label>
+                        <label for="phone_number">Numero di Telefono *</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
-                            class="form-control" value="{{Request::old('phone_number')}}" required>
+                            class="form-control" value="{{ Request::old('phone_number') }}" >
+                            <span class="color-red" id="phone-error"></span>
                     </div>
                     <div class="col-3 col-md-6">
-                        <label for="vat">Vat</label>
-                        <input class="form-control" type="text" id="vat" name="vat" class="form-control" value="{{Request::old('vat')}}" required>
+                        <label for="vat">Vat *</label>
+                        <input class="form-control" type="text" id="vat" name="vat" class="form-control"
+                            value="{{ Request::old('vat') }}" >
+                            <span class="color-red" id="vat-error"></span>
                     </div>
                     <div class="col-5 col-md-6">
-                        <label for="photo">Photo</label>
-                        <input type="file" name="photo" id="photo" class="form-control" value="{{Request::old('photo')}}">
+                        <label for="photo">Foto</label>
+                        <input type="file" name="photo" id="photo" class="form-control"
+                            value="{{ Request::old('photo') }}">
                     </div>
-                    <div class="mt-5">
-                        <span class="text-center "><strong>
-                            Consigliabile scegliere almeno una delle seguenti categorie per una corretta indicizzazione del ristorante:
-                            </strong></span>
-                    </div>
-                    <div class="col-md-12  d-flex flex-wrap gap-3 ">
-                         @foreach ($categories as $category)
+                    <div class="col-md-12  d-flex flex-wrap gap-3 mt-4">
+                        <span>Categorie del Ristorante *</span>
+                        @foreach ($categories as $category)
                             <div class="form-check ">
                                 <input type="checkbox" class="form-check-input" value="{{ $category->id }}"
                                     name="category[]" id="category-{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
@@ -62,24 +70,75 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="info-wrapper">
+                        <h5>I campi con il simbolo * sono obbligatori</h5>
+                    </div>
                     <div>
-                        <input class="btn btn-success w-25 mt-4" type="submit" value="Submit">
+                        <input class="btn btn-success w-25 mt-4" type="submit" value="Crea">
                     </div>
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </div>
         @endif
     </div>
 
+    <script async>
+        document.getElementById('restaurant-form').addEventListener('submit', function(event) {
+            let name = document.getElementById('name').value.trim();
+            let nameError = document.getElementById('name-error');
+            let address = document.getElementById('address').value.trim();
+            let addressError = document.getElementById('address-error');
+            let phone = document.getElementById('phone_number').value.trim();
+            let phoneError = document.getElementById('phone-error');
+            let vat = document.getElementById('vat').value.trim();
+            let vatError = document.getElementById('vat-error');
+            let errors = false;
+
+
+            // Validazione del nome (esempio)
+            if (name === '') {
+                nameError.textContent = 'Il nome del ristorante è obbligatorio';
+                errors = true;
+            } else {
+                nameError.textContent = '';
+            }
+
+            if (address === '') {
+                addressError.textContent = 'Inserisci il giusto indirizzo';
+                errors = true;
+            } else {
+                address.textContent = '';
+            }
+
+            if (phone === '') {
+                phoneError.textContent = 'Inserisci almeno 9 cifre';
+                errors = true;
+            } else {
+                phone.textContent = '';
+            }
+
+            if (vat === '') {
+                vatError.textContent = 'Inserisci 11 cifre per la vat';
+                errors = true;
+            } else {
+                vat.textContent = '';
+            }
+
+            // Impedisci l'invio del form se ci sono errori
+            if (errors) {
+                event.preventDefault();
+            }
+        });
+    </script>
 
 
 

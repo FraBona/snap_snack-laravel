@@ -49,13 +49,13 @@ class RestaurantController extends Controller
             return redirect()->route('admin.dashboard');
         } else {
             $request->validate([
-                'name' => 'required|regex:/[a-zA-Z\s]+/|max:30|string',
-                'address' => 'required|max:255|string',
-                'phone_number' => 'required|regex:/[0-9]+/|max:30|string',
+                'name' => 'required|regex:/[a-zA-Z\s]+/|min:3|max:30|string',
+                'address' => 'required|min:10|max:255|string',
+                'phone_number' => 'required|regex:/[0-9]+/|min:9|max:10|string',
                 'vat' => 'required|max:11|min:11|string',
                 'photo' => 'nullable|image|mimes:jpeg,png,pdf|max:2048',
                 'user_id' => 'nullable|exists:users,id',
-                'categories' => 'exists:categories,id'
+                'category' => 'required|array|min:1'
             ]);
             $data = $request->all();
 
