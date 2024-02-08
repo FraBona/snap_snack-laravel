@@ -49,41 +49,54 @@
         </form>
     </div>
     <script async>
-        document.getElementById('form-edit').addEventListener('submit', function(event) {
+        // aggancio la funzione al form : 
+        document.getElementById('dish_form').addEventListener('submit', function(event) {
+    
+            // recupero gli elementi del DOM : 
+            
             let name = document.getElementById('name').value.trim();
-            let nameError = document.getElementById('name-error');
-            let price = document.getElementById('price').value;
-            let priceError = document.getElementById('price-error');
+            let price = document.getElementById('price').value.trim();
             let description = document.getElementById('description').value.trim();
-            let descriptionError = document.getElementById('description-error');
+           
+            // recupero gli span di errore 
+            let name_error = document.getElementById('name_error');
+            let price_error = document.getElementById('price_error');
+            let description_error = document.getElementById('description_error');
+    
+            // inizzializzo l'errore a false : 
             let errors = false;
     
-    
-            // Validazione del nome (esempio)
-            if (name === '') {
-                nameError.textContent = 'Inserisci il nome del ristorante';
-                errors = true;
-            } else {
-                nameError.textContent = '';
+            
+            function isOnlyNumber(item) {
+                return !isNaN(Number(item));
             }
     
-            if (price === '') {
-                priceError.textContent = 'Inserisci il prezzo al piatto';
+            // Validations :
+    
+            if (name === '' || name.length < 3 || name.length > 30 || isOnlyNumber(name)) {
+                name_error.textContent = 'Assicurati di inserire un Nome valido';
                 errors = true;
             } else {
-                price.textContent = '';
+                name_error.textContent = '';
+            }
+            if (price === '' || price.toString().length < 1 || price.toString().length > 6 || !isOnlyNumber(price) || price < 0.5 ) {
+                price_error.textContent = 'Inserisci un Prezzo valido';
+                errors = true;
+            } else {
+                price_error.textContent = '';
+            }
+            if (description === ''|| description.length < 10) {
+                    description_error.textContent = 'Assicurati di inserire una Descrizione valida';
+                errors = true;
+            } else {
+                description_error.textContent = '';
             }
     
-            if (description === '') {
-                descriptionError.textContent = 'Inserisci la descrizione';
-                errors = true;
-            } else {
-                description.textContent = '';
-            }
-            // Impedisci l'invio del form se ci sono errori
+        // Impedisci l'invio del form se ci sono errori 
             if (errors) {
                 event.preventDefault();
             }
+    
         });
     </script>
     
