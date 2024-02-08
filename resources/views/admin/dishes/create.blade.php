@@ -25,18 +25,18 @@
 @section('content')
 <section class="center-content">
     <div class="container">
-        <form class="form py-5 row g-3 justify-content-center" action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data" id="dish-form">
+        <form class="form py-5 row g-3 justify-content-center" action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data" id="dish_form">
             @csrf
             <div class="col-md-6">
                 <label for="name">Nome piatto *</label>
                 <input class="form-control" type="text" id="name" name="name"  value="{{Request::old('name')}}" >
-                <span class="color-red" id="name-error"></span>
+                <span class="color-red" id="name_error"></span>
             </div>
 
             <div class="col-md-6">
                 <label for="price">Prezzo piatto *</label>
                 <input class="form-control" type="number" step="0.1" name="price" id="price" value="{{Request::old('price')}}" >
-                <span class="color-red" id="price-error"></span>
+                <span class="color-red" id="price_error"></span>
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
@@ -44,8 +44,7 @@
                 <textarea class="form-control" name="description" id="description" cols="30" rows="3" value="{{Request::old('description')}}" ></textarea>
 
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
-                <span class="color-red" id="description-error"></span>
-
+                <span class="color-red" id="description_error"></span>
             </div>
             <div class="col-md-12">
                 {{-- <label for="photo">Aggiungi Foto</label> --}}
@@ -69,41 +68,55 @@
 </section>
 
 <script async>
-    document.getElementById('dish-form').addEventListener('submit', function(event) {
+    // aggancio la funzione al form : 
+    document.getElementById('dish_form').addEventListener('submit', function(event) {
+
+        // recupero gli elementi del DOM : 
+        
         let name = document.getElementById('name').value.trim();
-        let nameError = document.getElementById('name-error');
-        let price = document.getElementById('price').value;
-        let priceError = document.getElementById('price-error');
+        let price = document.getElementById('price').value.trim();
         let description = document.getElementById('description').value.trim();
-        let descriptionError = document.getElementById('description-error');
+       
+        // recupero gli span di errore 
+        let name_error = document.getElementById('name_error');
+        let price_error = document.getElementById('price_error');
+        let description_error = document.getElementById('description_error');
+
+        // inizzializzo l'errore a false : 
         let errors = false;
 
-
-        // Validazione del nome (esempio)
-        if (name === '') {
-            nameError.textContent = 'Inserisci il nome del ristorante';
-            errors = true;
-        } else {
-            nameError.textContent = '';
+        
+        function isOnlyNumber(item) {
+            return !isNaN(Number(item));
         }
 
-        if (price === '') {
-            priceError.textContent = 'Inserisci il prezzo al piatto';
+        // Validations :
+
+        if (name === '' || name.length < 3 || name.length > 30 || isOnlyNumber(name)) {
+            name_error.textContent = 'Assicurati di inserire un Nome valido';
             errors = true;
         } else {
-            price.textContent = '';
+            name_error.textContent = '';
+        }
+        if (price === '' || price.toString().length < 1 || price.toString().length > 6 || !isOnlyNumber(price)) {
+            price_error.textContent = 'Inserisci un Prezzo valido';
+            errors = true;
+        } else {
+            price_error.textContent = '';
+        }
+        if (description === '' || description.length < 11 || description.length > 255 || !isOnlyNumber(
+            description)) {
+                description_error.textContent = 'Assicurati di inserire una Descrizione valida';
+            errors = true;
+        } else {
+            description_error.textContent = '';
         }
 
-        if (description === '') {
-            descriptionError.textContent = 'Inserisci la descrizione';
-            errors = true;
-        } else {
-            phone.textContent = '';
-        }
-        // Impedisci l'invio del form se ci sono errori
+    // Impedisci l'invio del form se ci sono errori 
         if (errors) {
             event.preventDefault();
         }
+
     });
 </script>
 
