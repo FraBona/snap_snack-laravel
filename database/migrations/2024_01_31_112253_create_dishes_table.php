@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->boolean('visible')->default(true)->nullable();
             $table->string('photo')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
