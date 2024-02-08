@@ -57,7 +57,7 @@ class DishController extends Controller
         $arrayId = ['restaurant_id' => $restaurant->id];
         $finalArray = array_merge($data, $arrayId);
         $new_dish = Dish::create($finalArray);
-        
+
         return redirect()->route('admin.dishes.show', $new_dish);
     }
 

@@ -55,12 +55,12 @@
                     <p>{{ $dish->price }}&euro;</p>
                     <div class="buttons-wrapper">
                       <a class="btn btn-warning mb-3" href="{{ route('admin.dishes.edit', $dish) }}">Modifica il piatto</a>
-                      <form action="{{ route('admin.dishes.destroy', $dish) }}" method="post">
+                      <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" id="{{$dish->name}}" class="dish-delete-alert">
                           @csrf
                           @method('DELETE')
 
                           <input type="submit" value="Cancella"
-                              onclick="return confirm('are you sure you want delete this item')" class="btn btn-danger">
+                               class="btn btn-danger">
                       </form>
                     </div>
                 </div>
@@ -69,4 +69,31 @@
         </div>
 
     </div>
+@endsection
+
+@section('alert-delete-scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.dish-delete-alert');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+
+                e.preventDefault();
+                Swal.fire({
+                title: 'Attenzione',
+                iconHtml: '<div><img widht="50px" height="50" src="https://images.pexels.com/photos/2113125/pexels-photo-2113125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""></div>',
+                html:  `<h1>Sei sicuro di voler eliminare:</h1> </br>  ${e.target.id} `,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Elimina il Piatto',
+                cancelButtonText: 'Torna indietro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+            });
+        });
+    </script>
 @endsection

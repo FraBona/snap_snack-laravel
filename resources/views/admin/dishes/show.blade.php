@@ -58,15 +58,42 @@
                     <li class="text-center mt-4"><strong>{{ $dish->description }}</strong></li>
                     <li class="text-center mt-4"><strong>{{ $dish->price }}</strong></li>
                 </ul>
-                <form action="{{ route('admin.dishes.destroy', $dish) }}" method="post">
+                <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" id="{{$dish->name}}" class="dish-delete-alert">
                     @csrf
                     @method('DELETE')
 
-                    <input class="btn btn-danger mt-4" type="submit" value="Cancella"
-                        onclick="return confirm('sei sicuro di voler cancellare?')" class="btn btn-danger">
+                    <input type="submit" value="Cancella"
+                         class="btn btn-danger">
                 </form>
                 <a class="btn btn-primary" href="{{ route('admin.dishes.index') }}">Torna al tuo Menu dei Piatti</a>
             </div>
         </div>
     </section>
+@endsection
+
+@section('alert-delete-scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.dish-delete-alert');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+
+                e.preventDefault();
+                Swal.fire({
+                title: 'Attenzione',
+                uploadUrl: '{{ route('dish.image') }}',
+                html:  `<h1>Sei sicuro di voler eliminare:</h1> </br>  ${e.target.id} `,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Elimina il Piatto',
+                cancelButtonText: 'Torna indietro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+            });
+        });
+    </script>
 @endsection
