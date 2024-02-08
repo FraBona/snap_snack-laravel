@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label id="email_error" for="email"
+                                <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail*') }}</label>
 
 
@@ -52,11 +52,12 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="email_error"></span>
                                 </div>
                             </div>
 
                             <div class="mb-4 row">
-                                <label id="password_error" for="password"
+                                <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
 
 
@@ -70,11 +71,12 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="password_error"></span>
                                 </div>
                             </div>
 
                             <div class="mb-4 row">
-                                <label id="confirm_error" for="password-confirm"
+                                <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password*') }}</label>
 
 
@@ -82,6 +84,7 @@
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation"  autocomplete="new-password">
                                 </div>
+                                <span id="password_conferm_error"></span>
                             </div>
 
                             <div class="mb-4 row mb-0">
@@ -108,21 +111,26 @@
             let name = document.getElementById('name').value.trim();
             console.log('pippo');
             let email = document.getElementById('email').value.trim();
-            let password = document.getElementById('password').value.trim();
-            let passwordConferm = document.getElementById('password-confirm').value.trim();
+            let password = document.getElementById('password').value
+            let passwordConferm = document.getElementById('password-confirm').value
 
             // recupero gli span di errore 
             let name_error = document.getElementById('name_error');
             let email_error = document.getElementById('email_error');
             let password_error = document.getElementById('password_error');
+            let password_conferm_error = document.getElementById('password_conferm_error');
 
             // inizzializzo l'errore a false : 
             let errors = false;
 
+            
+
+            // funzione per vedere se e'un numero 
 
             function isOnlyNumber(item) {
                 return !isNaN(Number(item));
             }
+            // funzione per vedere se e' un email 
 
             function validateEmail(email) {
                 const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
@@ -132,33 +140,41 @@
             // Validations :
 
             if (name === '' || name.length < 3 || name.length > 30 || isOnlyNumber(name)) {
-                // name.classList.add("text-red");
+                
                 name_error.className = " text-danger";
                 name_error.innerHTML = 'Assicurati di inserire un Nome valido';
                 errors = true;
             } else {
                 name_error.innerHTML = '';
             }
-            if (email === '' || email.length < 1 || !isOnlyNumber(email) || !validateEmail(email) ) {
-                // email.classList.add("text-red");
-                email_error.innerHTML = 'Inserisci una Email valida';
+            if (email === '' || email.length < 1 || !validateEmail(email)|| email.length > 255 ) {
+                
+                console.log(validateEmail(email));
+                email_error.className = " text-danger";
+                email_error.innerHTML = 'Assicurati di inserire una Email valida';
                 errors = true;
             } else {
-                email_error.innerHTML = 'E-Mail';
+                email_error.innerHTML = '';
             }
-            // if (description === '' || description.length < 10 || description.length > 255) {
-            //     element.classList.add("text-red");
-            //     description_error.textContent = 'Assicurati di inserire una Descrizione valida';
-            //     errors = true;
-            // } else {
-            //     description_error.innerHTML = '';
-            // }
+            if (password === '' || password.length < 8 || password.length > 40 || isOnlyNumber(password)) {
+                password_error.className = " text-danger";
+                password_error.innerHTML = 'Assicurati di inserire una Password Valida';
+                errors = true;
+            } else {
+                password_error.innerHTML = '';
+            }
+            if (!(passwordConferm === password)) {
+                password_conferm_error.className = " text-danger";
+                password_conferm_error.innerHTML = 'Le Password Non Corrispondono';
+                errors = true;
+            } else {
+                password_conferm_error.innerHTML = '';
+            }
 
             // Impedisci l'invio del form se ci sono errori 
             if (errors) {
                 event.preventDefault();
             }
-
         });
     </script>
 @endsection
