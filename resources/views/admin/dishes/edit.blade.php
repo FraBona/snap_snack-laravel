@@ -9,24 +9,24 @@
     <h2 class="text-center mt-5">Modifica il tuo Piatto:</h2>
     <div class="container">
         <form class="form py-5 row g-3 justify-content-center" action="{{ route('admin.dishes.update', $dish) }}"
-            method="post" enctype="multipart/form-data" id="form-edit">
+            method="post" enctype="multipart/form-data" id="dish_form_edit">
             @csrf
             @method('PUT')
             <div class="col-md-12">
                 <label for="name">Nome piatto *</label>
                 <input class="form-control" type="text" id="name" name="name"  value="{{ $dish->name }}">
-                <span class="color-red" id="name-error"></span>
+                <span class="color-red" id="name_error"></span>
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ $dish->description }}</textarea>
-                <span class="color-red" id="description-error"></span>
+                <span class="color-red" id="description_error"></span>
             </div>
             <div class="col-md-12">
                 <label for="price">Prezzo piatto *</label>
                 <input class="form-control" type="number" step="0.1" name="price" id="price"
                     value="{{ $dish->price }}">
-                    <span class="color-red" id="price-error"></span>
+                    <span class="color-red" id="price_error"></span>
             </div>
             <div class="col-md-12">
                 <label>Inserici la Foto *</label>
@@ -50,7 +50,7 @@
     </div>
     <script async>
         // aggancio la funzione al form : 
-        document.getElementById('dish_form').addEventListener('submit', function(event) {
+        document.getElementById('dish_form_edit').addEventListener('submit', function(event) {
     
             // recupero gli elementi del DOM : 
             
@@ -85,7 +85,7 @@
             } else {
                 price_error.textContent = '';
             }
-            if (description === ''|| description.length < 10) {
+            if (description === ''|| description.length < 10 || description.length > 255) {
                     description_error.textContent = 'Assicurati di inserire una Descrizione valida';
                 errors = true;
             } else {

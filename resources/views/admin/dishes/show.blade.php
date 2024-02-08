@@ -56,7 +56,7 @@
                 <ul class="ul-resetted">
                     <li class="dish-title text-center mt-4"><strong>{{ $dish->name }}</strong></li>
                     <li class="text-center mt-4"><strong>{{ $dish->description }}</strong></li>
-                    <li class="text-center mt-4"><strong>{{ $dish->price }}</strong></li>
+                    <li class="text-center mt-4 mb-4"><strong>{{ $dish->price }}</strong></li>
                 </ul>
                 <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" id="{{$dish->name}}" class="dish-delete-alert">
                     @csrf
