@@ -49,13 +49,22 @@ class RestaurantController extends Controller
      */
     public function filter(Request $request)
     {
-
         $categories = $request->categories;
+        $searchedRestaurant = $request->input('query', null);
 
-        $filteredData = Restaurant::whereHas('categories', function ($query) use ($categories) {
-            $query->whereIn('name', $categories);
-        }, '=', count($categories))->with('categories')
-            ->get();
+        $query = Restaurant::query();
+
+        foreach ($categories as $category) {
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('name', $category);
+            });
+        }
+
+        if (!empty($searchedRestaurant)) {
+            $query->where('name', 'LIKE', '%' . $searchedRestaurant . '%');
+        }
+
+        $filteredData = $query->with('categories')->get();
 
         return response()->json([
             'restaurants' => $filteredData,
