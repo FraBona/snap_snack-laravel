@@ -35,7 +35,7 @@
 
             <div class="col-md-6">
                 <label for="price">Prezzo piatto *</label>
-                <input class="form-control" type="number" step="0.1" name="price" id="price" value="{{Request::old('price')}}" >
+                <input class="form-control" type="number" step="0.01" name="price" id="price" value="{{Request::old('price')}}" >
                 <span class="color-red" id="price_error"></span>
             </div>
             <div class="col-md-12">
@@ -95,13 +95,13 @@
         } else {
             name_error.textContent = '';
         }
-        if (price === '' || price.toString().length < 1 || price.toString().length > 6 || !isOnlyNumber(price)) {
+        if (price === '' || price.toString().length < 1 || price.toString().length > 6 || !isOnlyNumber(price) || price < 0.5 ) {
             price_error.textContent = 'Inserisci un Prezzo valido';
             errors = true;
         } else {
             price_error.textContent = '';
         }
-        if (description === '') {
+        if (description === ''|| description.length < 10 || description.length < 255) {
                 description_error.textContent = 'Assicurati di inserire una Descrizione valida';
             errors = true;
         } else {
