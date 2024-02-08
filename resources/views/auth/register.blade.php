@@ -43,7 +43,7 @@
 
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"
+                                    <input id="email" type="string"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" autocomplete="email">
 
@@ -109,7 +109,6 @@
             // recupero gli elementi del DOM : 
 
             let name = document.getElementById('name').value.trim();
-            console.log('pippo');
             let email = document.getElementById('email').value.trim();
             let password = document.getElementById('password').value
             let passwordConferm = document.getElementById('password-confirm').value
