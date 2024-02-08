@@ -12,9 +12,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+
     }    
     .color-red {
         color: red
+
     }
 </style>
 
@@ -29,7 +32,7 @@
                 <input class="form-control" type="text" id="name" name="name"  value="{{Request::old('name')}}" >
                 <span class="color-red" id="name_error"></span>
             </div>
-    
+
             <div class="col-md-6">
                 <label for="price">Prezzo piatto *</label>
                 <input class="form-control" type="number" step="0.1" name="price" id="price" value="{{Request::old('price')}}" >
@@ -37,6 +40,9 @@
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
+
+                <textarea class="form-control" name="description" id="description" cols="30" rows="3" value="{{Request::old('description')}}" ></textarea>
+
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
                 <span class="color-red" id="description_error"></span>
             </div>
