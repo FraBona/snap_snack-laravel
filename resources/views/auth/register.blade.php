@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Registrazione') }}</div>
 
                     <div class="card-body justify-content-center">
                         <form id="register_form" method="POST" action="{{ route('register') }}">
@@ -58,7 +58,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password * (Min 8 Caratteri)') }}</label>
 
 
                                 <div class="col-md-6">
@@ -83,14 +83,14 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation"  autocomplete="new-password">
+                                        <span id="password_conferm_error"></span>
                                 </div>
-                                <span id="password_conferm_error"></span>
                             </div>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
             }
             if (!(passwordConferm === password)) {
                 password_conferm_error.className = " text-danger";
-                password_conferm_error.innerHTML = 'Le Password Non Corrispondono';
+                password_conferm_error.innerHTML = 'Le Due Password Non Corrispondono';
                 errors = true;
             } else {
                 password_conferm_error.innerHTML = '';
