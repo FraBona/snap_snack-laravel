@@ -79,9 +79,10 @@
 
                 e.preventDefault();
                 Swal.fire({
+
                 title: 'Attenzione',
-                html:  `<h1>Sei sicuro di voler eliminare:</h1> </br>  ${e.target.id} `,
-                icon: 'warning',
+                html:  `<h3>Sei sicuro di voler eliminare:</h3> </br>  ${e.target.id} `,
+                icon: 'trash',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
