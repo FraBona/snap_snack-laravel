@@ -80,7 +80,6 @@
                 e.preventDefault();
                 Swal.fire({
                 title: 'Attenzione',
-                uploadUrl: '{{ route('dish.image') }}',
                 html:  `<h1>Sei sicuro di voler eliminare:</h1> </br>  ${e.target.id} `,
                 icon: 'warning',
                 showCancelButton: true,

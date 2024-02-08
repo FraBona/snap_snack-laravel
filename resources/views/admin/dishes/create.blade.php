@@ -40,9 +40,6 @@
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
-
-                <textarea class="form-control" name="description" id="description" cols="30" rows="3" value="{{Request::old('description')}}" ></textarea>
-
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
                 <span class="color-red" id="description_error"></span>
             </div>
