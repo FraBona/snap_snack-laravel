@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+
         $results = Restaurant::all()->load(['categories', 'user']);
 
         return response()->json([
@@ -45,9 +47,20 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Restaurant $restaurant)
+    public function filter(Request $request)
     {
-        //
+
+        $categories = $request->categories;
+
+        $filteredData = Restaurant::whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('name', $categories);
+        }, '=', count($categories))->with('categories')
+            ->get();
+
+        return response()->json([
+            'restaurants' => $filteredData,
+            'success' => true
+        ]);
     }
 
     /**
