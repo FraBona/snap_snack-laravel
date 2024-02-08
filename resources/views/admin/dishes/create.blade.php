@@ -101,8 +101,7 @@
         } else {
             price_error.textContent = '';
         }
-        if (description === '' || description.length < 11 || description.length > 255 || !isOnlyNumber(
-            description)) {
+        if (description === '') {
                 description_error.textContent = 'Assicurati di inserire una Descrizione valida';
             errors = true;
         } else {
