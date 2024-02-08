@@ -40,9 +40,6 @@
             </div>
             <div class="col-md-12">
                 <label for="description">Descrizione piatto *</label>
-
-                <textarea class="form-control" name="description" id="description" cols="30" rows="3" value="{{Request::old('description')}}" ></textarea>
-
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" value="{{Request::old('description')}}" ></textarea>
                 <span class="color-red" id="description_error"></span>
             </div>
@@ -104,8 +101,7 @@
         } else {
             price_error.textContent = '';
         }
-        if (description === '' || description.length < 11 || description.length > 255 || !isOnlyNumber(
-            description)) {
+        if (description === '') {
                 description_error.textContent = 'Assicurati di inserire una Descrizione valida';
             errors = true;
         } else {
