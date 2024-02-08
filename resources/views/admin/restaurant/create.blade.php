@@ -8,26 +8,21 @@
     }
 
     .center-content {
-
-        height: calc(100vh - 76px);
-
+        height: calc(100vh - 200px);
         display: flex;
         justify-content: center;
         align-items: center;
-
-
     }
-
     .color-red {
         color: red
     }
 </style>
 @extends('layouts.app')
 @section('content')
+<h2 class="text-center mt-5">
+    Inscerisci il tuo Ristorante in SnapSnack
+</h2>
     <div class="center-content">
-        {{-- <h2 class="text-center">
-            Inscerisci il tuo Ristorante in SnapSnack
-        </h2> --}}
         @if (!$restaurant)
             <div class="container center-content p-2">
                 <form class="form row py-2 g-3 justify-content-center" action="{{ route('admin.restaurant.store') }}"

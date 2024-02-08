@@ -6,6 +6,9 @@
     }
 </style>
 @section('content')
+<h2 class="text-center mt-5">
+    Registrati a SnapSnack
+</h2>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -93,6 +96,9 @@
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>
+                            </div>
+                            <div class="info-wrapper">
+                                <h5>I campi con il simbolo * sono obbligatori</h5>
                             </div>
                         </form>
                     </div>
