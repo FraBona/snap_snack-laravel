@@ -47,7 +47,7 @@
                         <span class="color-red" id="phone_number_error"></span>
                     </div>
                     <div class="col-3 col-md-6">
-                        <label for="vat">Vat *</label>
+                        <label for="vat">P.Iva *</label>
                         <input class="form-control" type="text" id="vat" name="vat" class="form-control"
                             value="{{ Request::old('vat') }}">
                         <span class="color-red" id="vat_error"></span>
