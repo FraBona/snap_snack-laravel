@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Dish;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -38,10 +39,26 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         $restaurant->load(['categories', 'user']);
+
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+
+
         return response()->json([
             'restaurant' => $restaurant,
+            'dishes' => $dishes,
+            'success' => true
         ]);
     }
+
+    public function get(Restaurant $restaurant)
+    {
+
+        return response()->json([
+            'restaurant' => $restaurant,
+            'success' => true
+        ]);
+    }
+
 
 
     /**

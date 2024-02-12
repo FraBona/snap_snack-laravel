@@ -87,24 +87,24 @@ class DishSeeder extends Seeder
                 'photo' => 'https://example.com/gelato_cioccolato.jpg'
             ]
         ];
-        $restaurant = Restaurant::all();
+        $restaurants = Restaurant::all();
         // $restaurantIds = $restaurant->pluck('id');
+        foreach ($restaurants as $restaurant) {
+            foreach ($dishes as $dish) {
 
-        foreach ($dishes as $dish) {
+                $new_dish = new Dish();
 
-            $new_dish = new Dish();
+                $new_dish->name = $dish['name'];
+                $new_dish->description = $dish['description'];
+                $new_dish->price = $dish['price'];
+                $new_dish->visible = $dish['visible'];
+                $new_dish->photo = $dish['photo'];
+                $new_dish->restaurant_id = $restaurant->id;
 
-            $new_dish->name = $dish['name'];
-            $new_dish->description = $dish['description'];
-            $new_dish->price = $dish['price'];
-            $new_dish->visible = $dish['visible'];
-            $new_dish->photo = $dish['photo'];
-            $new_dish->restaurant_id = $restaurant->random()->id;
+                $new_dish->save();
 
-            $new_dish->save();
-
-            // $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
-
+                // $new_dish->restaurants()->attach($faker->randomElements($restaurantIds, null));
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ Route::get('/dishes', [DishController::class, 'index']);
 Route::get('/dish/{dish:id}', [DishController::class, 'show']);
 
 Route::get('/restaurants', [RestaurantController::class, 'index']);
+Route::get('/restaurant/get/{restaurant:id}', [RestaurantController::class, 'get']);
 Route::post('/restaurants/filter', [RestaurantController::class, 'filter']);
 
 Route::get('/restaurant/{restaurant:slug}', [RestaurantController::class, 'show']);
