@@ -8,12 +8,10 @@
     }
 
     .center-content {
-        height: calc(100vh - 80px);
+        height: calc(100vh - 200px);
         display: flex;
         justify-content: center;
         align-items: center;
-
-
     }    
     .color-red {
         color: red
@@ -23,6 +21,9 @@
 
 @extends('layouts.app')
 @section('content')
+<h2 class="text-center mt-5">
+    Inscerisci un piatto
+</h2>
 <section class="center-content">
     <div class="container">
         <form class="form py-5 row g-3 justify-content-center" action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data" id="dish_form">
@@ -101,7 +102,7 @@
         } else {
             price_error.textContent = '';
         }
-        if (description === ''|| description.length < 10 || description.length > 255) {
+        if (description === ''|| description.length < 20 || description.length > 255) {
                 description_error.textContent = 'Assicurati di inserire una Descrizione valida';
             errors = true;
         } else {

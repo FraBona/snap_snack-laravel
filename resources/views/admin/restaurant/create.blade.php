@@ -8,26 +8,21 @@
     }
 
     .center-content {
-
-        height: calc(100vh - 76px);
-
+        height: calc(100vh - 200px);
         display: flex;
         justify-content: center;
         align-items: center;
-
-
     }
-
     .color-red {
         color: red
     }
 </style>
 @extends('layouts.app')
 @section('content')
+<h2 class="text-center mt-5">
+    Inscerisci il tuo Ristorante in SnapSnack
+</h2>
     <div class="center-content">
-        {{-- <h2 class="text-center">
-            Inscerisci il tuo Ristorante in SnapSnack
-        </h2> --}}
         @if (!$restaurant)
             <div class="container center-content p-2">
                 <form class="form row py-2 g-3 justify-content-center" action="{{ route('admin.restaurant.store') }}"
@@ -52,7 +47,7 @@
                         <span class="color-red" id="phone_number_error"></span>
                     </div>
                     <div class="col-3 col-md-6">
-                        <label for="vat">Vat *</label>
+                        <label for="vat">P.Iva *</label>
                         <input class="form-control" type="text" id="vat" name="vat" class="form-control"
                             value="{{ Request::old('vat') }}">
                         <span class="color-red" id="vat_error"></span>

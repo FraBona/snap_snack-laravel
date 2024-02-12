@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DishController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\SearchController;
 use Illuminate\Http\Request;
@@ -31,3 +32,5 @@ Route::post('/restaurants/filter', [RestaurantController::class, 'filter']);
 
 Route::get('/restaurant/{restaurant:slug}', [RestaurantController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::post('/order', [OrderController::class, 'store']);
