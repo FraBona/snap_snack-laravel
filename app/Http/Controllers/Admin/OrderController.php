@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Dish;
 use App\Models\Order;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +17,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user()->id;
+        $restaurant = Restaurant::where('user_id', '=', $user)->first();
+        if ($restaurant) {
+            $orders = Order::where('restaurant_id', '=', $restaurant->id)->get();
+            return view('admin.orders.index', compact('orders'));
+        }
     }
 
     /**
