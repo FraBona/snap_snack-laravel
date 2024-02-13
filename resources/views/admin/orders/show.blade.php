@@ -14,8 +14,12 @@
                       <?php
                         $object = (object)$dish;
                       ?>
-                      <li class="text-center mt-4 mb-4">Nome: {{$object->name}}</li>
-                      <li class="text-center mt-4 mb-4">Quantita: {{$object->quantity}}</li>
+                      @if ($object->name === 'errore')
+                        
+                      @else
+                        <li class="text-center mt-4 mb-4">Nome: {{$object->name}}</li>
+                        <li class="text-center mt-4 mb-4">Quantita: {{$object->quantity}}</li>
+                      @endif
                     @endforeach
                 </ul>
                 {{-- <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post" id="{{$dish->name}}" class="dish-delete-alert">
