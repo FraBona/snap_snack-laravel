@@ -54,13 +54,32 @@ class OrderController extends Controller
             $quantities = DishOrder::where('order_id', '=', $order->id)->get();
             $dishesWithQuantities = [];
             foreach ($dishes as $dish) {
-                $dishQuantity = $quantities->where('dish_id', $dish->id)->first();
-            
-                $dishesWithQuantities []= [
-                    'name' => $dish->name,
-                    'quantity' => $dishQuantity ? $dishQuantity->quantity : 0, 
+                // Query per recuperare il piatto associato a questo ordine specifico
+                $singleDishOrder = DishOrder::where('order_id', '=', $order->id)
+                                             ->where('dish_id', '=', $dish->id)
+                                             ->first();
+        
+                // Ottieni il nome del piatto se esiste un ordine per questo piatto
+                $dishName = $singleDishOrder ? $dish->name : 'errore';
+        
+                // Ottieni la quantità del piatto se esiste un ordine per questo piatto
+                $dishQuantity = $singleDishOrder ? $singleDishOrder->quantity : 0;
+        
+                // Aggiungi il piatto con il nome e la quantità all'array $dishesWithQuantities
+                $dishesWithQuantities[] = [
+                    'name' => $dishName,
+                    'quantity' => $dishQuantity,
                 ];
             }
+           // dd($dishesWithQuantities);
+            // foreach ($dishes as $dish) {
+            //     $dishQuantity = $quantities->where('dish_id', $dish->id)->first();
+            
+            //     $dishesWithQuantities []= [
+            //         'name' => $dish->name,
+            //         'quantity' => $dishQuantity ? $dishQuantity->quantity : 0, 
+            //     ];
+            // }
             return view('admin.orders.show', compact('order', 'dishesWithQuantities'));
         }
     }
