@@ -29,8 +29,9 @@
                                         href="{{ route('admin.restaurant.show', $restaurant) }}">{{ $restaurant->name }}</a></strong></span>
                         @endif
                         @if ($restaurant)
-                            <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione piatto</a>
+                            <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione Piatto</a>
                             <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">Il Mio Menu</a>
+                            <a class="btn btn-warning" href="{{ route('admin.orders.index') }}">I Miei Ordini</a>
                         @endif
                     </div>
                 </div>
