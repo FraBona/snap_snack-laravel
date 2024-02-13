@@ -53,6 +53,8 @@ class OrderController extends Controller
             $dishes = Dish::where('restaurant_id', '=', $order->restaurant_id)->get();
             $quantities = DishOrder::where('order_id', '=', $order->id)->get();
             $dishesWithQuantities = [];
+            $amount = 0;
+            $totalAmount = 0;
             foreach ($dishes as $dish) {
                 // Query per recuperare il piatto associato a questo ordine specifico
                 $singleDishOrder = DishOrder::where('order_id', '=', $order->id)
@@ -60,10 +62,13 @@ class OrderController extends Controller
                                              ->first();
         
                 // Ottieni il nome del piatto se esiste un ordine per questo piatto
-                $dishName = $singleDishOrder ? $dish->name : 'errore';
+                $dishName = $singleDishOrder ? $dish : 'errore';
         
                 // Ottieni la quantità del piatto se esiste un ordine per questo piatto
                 $dishQuantity = $singleDishOrder ? $singleDishOrder->quantity : 0;
+
+                $amount = ($dish->price * $dishQuantity);
+                $totalAmount += $amount;
         
                 // Aggiungi il piatto con il nome e la quantità all'array $dishesWithQuantities
                 $dishesWithQuantities[] = [
@@ -71,16 +76,10 @@ class OrderController extends Controller
                     'quantity' => $dishQuantity,
                 ];
             }
-           // dd($dishesWithQuantities);
-            // foreach ($dishes as $dish) {
-            //     $dishQuantity = $quantities->where('dish_id', $dish->id)->first();
-            
-            //     $dishesWithQuantities []= [
-            //         'name' => $dish->name,
-            //         'quantity' => $dishQuantity ? $dishQuantity->quantity : 0, 
-            //     ];
-            // }
-            return view('admin.orders.show', compact('order', 'dishesWithQuantities'));
+            if($totalAmount != $order->amount){
+                return view('admin.errors.amount');
+            }
+            return view('admin.orders.show', compact('order', 'dishesWithQuantities', 'totalAmount'));
         }
     }
 

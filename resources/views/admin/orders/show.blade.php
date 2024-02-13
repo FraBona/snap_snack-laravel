@@ -9,7 +9,7 @@
                     <li class="text-center mt-4 mb-4"><strong>{{ $order->customer_address  }}</strong></li>
                     <li class="text-center mt-4 mb-4"><strong>{{ $order->customer_email  }}</strong></li>
                     <li class="text-center mt-4 mb-4"><strong>{{ $order->customer_phone  }}</strong></li>
-                    <li class="text-center mt-4 mb-4"><strong>{{ $order->amount  }}</strong></li>
+                    <li class="text-center mt-4 mb-4"><strong>{{ $totalAmount  }}</strong></li>
                     @foreach ($dishesWithQuantities as $dish)
                       <?php
                         $object = (object)$dish;
@@ -17,7 +17,7 @@
                       @if ($object->name === 'errore')
                         
                       @else
-                        <li class="text-center mt-4 mb-4">Nome: {{$object->name}}</li>
+                        <li class="text-center mt-4 mb-4">Nome: {{$object->name->name}}</li>
                         <li class="text-center mt-4 mb-4">Quantita: {{$object->quantity}}</li>
                       @endif
                     @endforeach
