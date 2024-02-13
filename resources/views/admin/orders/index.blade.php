@@ -3,16 +3,19 @@
 <section class="order-wrapper mt-5">
   <div class="container">
     <div class="row gy-3 gap-3 flex-wrap justify-content-center">
-      @foreach ($orders as $order)
+      @foreach ($orderAmount as $order)
+      <?php
+        $object = (object)$order;
+      ?>
       <a href="{{route ('admin.orders.show', $order)}}" class="col-md-3 py-4 ancor-order">
         <div class="">
           <ul class="d-flex flex-column gap-2 ul-ordini justify-content-center">
-            <li class="d-flex"><strong>Nome: </strong> {{$order->customer_name}}</li>
-            <li class="d-flex"><strong>Cognome: </strong> {{$order->customer_last_name}}</li>
-            <li class="d-flex"><strong>Email: </strong> {{$order->customer_email}}</li>
-            <li class="d-flex"><strong>Indirizzo: </strong> {{$order->customer_address}}</li>
-            <li class="d-flex"><strong>Telefono: </strong> {{$order->customer_phone}}</li>
-            <li class="d-flex"><strong>Totale: </strong> {{$order->amount}} &euro;</li>
+            <li class="d-flex"><strong>Nome: </strong> {{$object->order->customer_name}}</li>
+            <li class="d-flex"><strong>Cognome: </strong> {{$object->order->customer_last_name}}</li>
+            <li class="d-flex"><strong>Email: </strong> {{$object->order->customer_email}}</li>
+            <li class="d-flex"><strong>Indirizzo: </strong> {{$object->order->customer_address}}</li>
+            <li class="d-flex"><strong>Telefono: </strong> {{$object->order->customer_phone}}</li>
+            <li class="d-flex"><strong>Totale: </strong> {{$object->amount}} &euro;</li>
           </ul>
         </div>
       </a>

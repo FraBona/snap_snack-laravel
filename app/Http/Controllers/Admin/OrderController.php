@@ -22,9 +22,35 @@ class OrderController extends Controller
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
         if ($restaurant) {
             $orders = Order::where('restaurant_id', '=', $restaurant->id)->get();
-            return view('admin.orders.index', compact('orders'));
+            $orderAmount = [];
+            foreach($orders as $order) {
+                $dishes = Dish::where('restaurant_id', '=', $order->restaurant_id)->get();
+                $quantities = DishOrder::where('order_id', '=', $order->id)->get();
+                $amount = 0;
+                $totalAmount = 0;
+                foreach ($dishes as $dish) {
+                    // Query per recuperare il piatto associato a questo ordine specifico
+                    $singleDishOrder = DishOrder::where('order_id', '=', $order->id)
+                                                 ->where('dish_id', '=', $dish->id)
+                                                 ->first();
+                    // Ottieni la quantità del piatto se esiste un ordine per questo piatto
+                    $dishQuantity = $singleDishOrder ? $singleDishOrder->quantity : 0;
+
+                    $amount = ($dish->price * $dishQuantity);
+                    $totalAmount += $amount;
+                    $orderAmount[] = [
+                        'order' => $order,
+                        'amount' => $totalAmount,
+                    ];
+                }
+            }
+            //dd($dishesWithQuantities);
+            return view('admin.orders.index', compact('orders', 'orderAmount'));
         }
+
+
     }
+
 
     /**
      * Show the form for creating a new resource.
