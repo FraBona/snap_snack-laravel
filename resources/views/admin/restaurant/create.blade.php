@@ -129,7 +129,7 @@
             } else {
                 name_error.textContent = '';
             }
-            if (address === '' || address.length < 10 || address.length > 30 || isOnlyNumber(address)) {
+            if (address === '' || address.length < 10 || address.length > 60 || isOnlyNumber(address)) {
                 address_error.textContent = 'Inserisci un Indirizzo valido';
                 errors = true;
             } else {
