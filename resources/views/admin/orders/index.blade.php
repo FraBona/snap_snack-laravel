@@ -9,7 +9,7 @@
             <table class="table">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Id Ordine</th>
                         <th scope="col">Nome Completo</th>
                         <th scope="col">Indirizzo</th>
                         <th scope="col">Data</th>
@@ -24,7 +24,7 @@
                     ?>
                         <tr class="ordine-row" id="show"
                             onclick="redirectShow('{{ route('admin.orders.show', $order) }}')">
-                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">{{ $object->id }}</th>
                             <td>{{ $object->customer_name }} {{ $order->customer_last_name }}</td>
                             <td>{{ $object->customer_address }}</td>
                             <td>{{$object->created_at}}</td>
