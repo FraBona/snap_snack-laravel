@@ -42,7 +42,6 @@ class OrderController extends Controller
             // Aggiungi il piatto all'ordine utilizzando il metodo attach()
             $order->dishes()->attach($dish['dish_id'], ['quantity' => $dish['quantity']]);
         }
-
         // Ora che i piatti sono stati associati all'ordine, puoi ritornare il risultato
         return response()->json([
             'order' => $order,

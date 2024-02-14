@@ -31,7 +31,8 @@
                         @if ($restaurant)
                             <a class="btn btn-success" href="{{ route('admin.dishes.create') }}">Crezione Piatto</a>
                             <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">Il Mio Menu</a>
-                            <a class="btn btn-warning" href="{{ route('admin.orders.index') }}">I Miei Ordini</a>
+                            <a class="btn btn-primary" href="{{ route('admin.orders.index') }}">I Miei Ordini</a>
+                            <a class="btn btn-danger" href="{{ route('admin.stats.index') }}">Statistiche ordini</a>
                         @endif
                     </div>
                 </div>
