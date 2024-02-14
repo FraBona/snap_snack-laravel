@@ -29,6 +29,24 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="row justify-content-center">
+              @foreach ($dishesWithQuantities as $dish)
+              <div class="dish-wrapper col-3 gap-3 mt-4">
+                      <?php
+                        $object = (object)$dish;
+                      ?>
+                      @if ($object->name === 'errore')
+                        
+                      @else
+                      @if ($object->name->photo)
+                        <img class="img-dish mt-5" src="{{ asset('storage/' . $object->name->photo) }}" alt="">
+                      @endif
+                        <h4>Nome: <span class="text-danger">{{$object->name->name}}</span></h4>
+                        <h4>Quantita: <span class="text-danger">{{$object->quantity}}</span></h4>
+                      @endif
+                </div>
+                @endforeach
+            </div>
         </div>
     </section>
 @endsection
@@ -42,6 +60,27 @@
         align-items: center;
         width: 100%;
         height: calc(100vh - 200px);
+    }
+    .dish-wrapper {
+        background-color: white;
+        min-width: 200px;
+        max-width: 600px;
+        padding: 20px;
+        display: flex;
+        margin: 20px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 1rem ;
+        box-shadow: rgba(128, 128, 128, 0.44) -6px -6px 6px -6px;
+    }
+    .img-dish {
+        min-width: 200px;
+        min-height: 150px;
+        max-width: 200px;
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: 1rem;
     }
 </style>
 {{-- 

@@ -143,7 +143,7 @@
                 phone_number_error.textContent = '';
             }
 
-            if (vat === '' || vat === 11 || !isOnlyNumber(vat)) {
+            if (vat === '' || vat.length < 11 || vat.length > 11 || !isOnlyNumber(vat)) {
                 vat_error.textContent = 'Inserisci un Vat valido';
                 errors = true;
             } else {
