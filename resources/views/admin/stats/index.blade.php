@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<div>
-  <canvas id="myChart"></canvas>
+<div id="wrapper">
+    <canvas id="myChart"></canvas>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -55,6 +55,17 @@
         }
     });
 </script>
+
+<style>
+  #wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 50px;
+    height: calc(100vh - 150px);
+  }
+</style>
 
 
 @endsection
