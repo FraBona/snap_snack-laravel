@@ -25,7 +25,7 @@
 @extends('layouts.app')
 @section('content')
 <div>
-<h2 class="text-center mt-4">
+<h2 class="text-center mt-5">
     Inscerisci il tuo Ristorante in SnapSnack
 </h2>
 </div>
