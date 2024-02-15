@@ -8,11 +8,11 @@
     }
 
     .center-content {
-        height: calc(100vh - 200px);
+
         display: flex;
         justify-content: center;
         align-items: center;
-    }    
+    }
     .color-red {
         color: red
 
@@ -66,24 +66,24 @@
 </section>
 
 <script async>
-    // aggancio la funzione al form : 
+    // aggancio la funzione al form :
     document.getElementById('dish_form').addEventListener('submit', function(event) {
 
-        // recupero gli elementi del DOM : 
-        
+        // recupero gli elementi del DOM :
+
         let name = document.getElementById('name').value.trim();
         let price = document.getElementById('price').value.trim();
         let description = document.getElementById('description').value.trim();
-       
-        // recupero gli span di errore 
+
+        // recupero gli span di errore
         let name_error = document.getElementById('name_error');
         let price_error = document.getElementById('price_error');
         let description_error = document.getElementById('description_error');
 
-        // inizzializzo l'errore a false : 
+        // inizzializzo l'errore a false :
         let errors = false;
 
-        
+
         function isOnlyNumber(item) {
             return !isNaN(Number(item));
         }
@@ -109,7 +109,7 @@
             description_error.textContent = '';
         }
 
-    // Impedisci l'invio del form se ci sono errori 
+    // Impedisci l'invio del form se ci sono errori
         if (errors) {
             event.preventDefault();
         }

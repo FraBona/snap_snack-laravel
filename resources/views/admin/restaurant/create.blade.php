@@ -8,10 +8,15 @@
     }
 
     .center-content {
-        height: calc(100vh - 200px);
+        /* height: calc(100vh - 200px); */
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px;
+
+        max-width: 1000px;
+        margin: 0 auto;
+
     }
     .color-red {
         color: red
@@ -19,12 +24,14 @@
 </style>
 @extends('layouts.app')
 @section('content')
-<h2 class="text-center mt-5">
+<div>
+<h2 class="text-center mt-4">
     Inscerisci il tuo Ristorante in SnapSnack
 </h2>
+</div>
     <div class="center-content">
         @if (!$restaurant)
-            <div class="container center-content p-2">
+            <div class="container  p-2">
                 <form class="form row py-2 g-3 justify-content-center" action="{{ route('admin.restaurant.store') }}"
                     method="post" enctype="multipart/form-data" id="restaurantForm">
                     @csrf
@@ -40,22 +47,27 @@
                             value="{{ Request::old('address') }}">
                         <span class="color-red" id="address_error"></span>
                     </div>
-                    <div class="col-4 col-md-12">
+                    <div class="col-6 col-md-12">
                         <label for="phone_number">Numero di Telefono *</label>
                         <input class="form-control" type="text" id="phone_number" name="phone_number"
                             class="form-control" value="{{ Request::old('phone_number') }}">
                         <span class="color-red" id="phone_number_error"></span>
                     </div>
-                    <div class="col-3 col-md-6">
+                    <div class="col-6 col-md-6">
                         <label for="vat">P.Iva *</label>
                         <input class="form-control" type="text" id="vat" name="vat" class="form-control"
                             value="{{ Request::old('vat') }}">
                         <span class="color-red" id="vat_error"></span>
                     </div>
-                    <div class="col-5 col-md-6">
+                    <div class="col-12 col-md-6">
                         <label for="photo">Foto</label>
                         <input type="file" name="photo" id="photo" class="form-control"
                             value="{{ Request::old('photo') }}">
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <label for="description">Descrizione</label>
+                        <textarea class="form-control" name="description" id="description" cols="12" rows="3" value="{{Request::old('description')}}" ></textarea>
+                        <span class="color-red" id="description_error"></span>
                     </div>
                     <div class="col-md-12  d-flex flex-wrap gap-3 mt-4">
                         <span>Categorie del Ristorante *</span>
@@ -92,31 +104,33 @@
     </div>
 
     <script async>
-        // aggancio la funzione al form : 
+        // aggancio la funzione al form :
         document.getElementById('restaurantForm').addEventListener('submit', function(event) {
 
-            // recupero gli elementi del DOM : 
+            // recupero gli elementi del DOM :
 
             let name = document.getElementById('name').value.trim();
             let address = document.getElementById('address').value.trim();
             let phone_number = document.getElementById('phone_number').value.trim();
             let vat = document.getElementById('vat').value.trim();
             let inputs = document.querySelectorAll('.checkboxes');
+            let description = document.getElementById('description').value.trim();
 
             let isOneChecked = Array.from(inputs).some(function(input) {
                 return input.checked;
             });
 
-            // recupero gli span di errore 
+            // recupero gli span di errore
             let name_error = document.getElementById('name_error');
             let address_error = document.getElementById('address_error');
             let phone_number_error = document.getElementById('phone_number_error');
             let vat_error = document.getElementById('vat_error');
             let checkbox_error = document.getElementById('checkbox_error');
-            // inizzializzo l'errore a false : 
+            let description_error = document.getElementById('description_error');
+            // inizzializzo l'errore a false :
             let errors = false;
 
-            
+
             function isOnlyNumber(item) {
                 return !isNaN(Number(item));
             }
@@ -155,7 +169,13 @@
             }else {
                 checkbox_error.textContent = '';
             }
-        // Impedisci l'invio del form se ci sono errori 
+            if (description.length > 255  ) {
+               description_error.textContent = 'Inserisci una Descrizione Valida';
+                errors = true;
+            } else {
+                description_error.textContent = '';
+            }
+        // Impedisci l'invio del form se ci sono errori
             if (errors) {
                 event.preventDefault();
             }
