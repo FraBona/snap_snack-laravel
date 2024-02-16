@@ -33,4 +33,4 @@ Route::post('/restaurants/filter', [RestaurantController::class, 'filter']);
 Route::get('/restaurant/{restaurant:slug}', [RestaurantController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::post('/order', [OrderController::class, 'store']);
+Route::post('/order', [OrderController::class, 'savePaymentData']);
