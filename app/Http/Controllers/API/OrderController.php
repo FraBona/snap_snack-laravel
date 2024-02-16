@@ -65,7 +65,7 @@ class OrderController extends Controller
 
             $dish_validation_rules = [
                 'dish_id' => 'required|integer',
-                'quantity' => 'required|integer|max:99',
+                'quantity' => 'required|integer',
             ];
 
             $cart_validation = Validator::make($dish_data, $dish_validation_rules);
@@ -98,11 +98,11 @@ class OrderController extends Controller
         $user_validation_rules = [
             'restaurant_id' => 'required|integer',
             'customer_name' => 'required|regex:/[a-zA-Z\s]+/|min:3|max:30|string',
-            'customer_last_name' => 'required|regex:/[a-zA-Z\s]+/|min:3|max:30|string',
-            'customer_address' => 'required|min:10|max:255|string',
-            'customer_email' => 'required|email',
-            'customer_phone' => 'required|regex:/[0-9]+/|min:9|max:10|string',
-            'amount' => 'required|numeric|between:0.5,9999.99',
+            'customer_last_name' => 'required|min:3|max:255|string',
+            'customer_address' => 'required|min:5|max:255|string',
+            'customer_email' => 'required|email|min:5|max:255|',
+            'customer_phone' => 'required|min:10|max:10',
+            'amount' => 'required|numeric',
 
         ];
 
@@ -116,13 +116,12 @@ class OrderController extends Controller
             $order = Order::create($user_data);
             foreach ($request->input('chest') as $dish) {
                 $currentDish = Dish::find($dish['id']);
-                $order->dishes()->attach($currentDish->id, ['quantity' => $dish['counter']]);
+                $order->dishes()->attach($currentDish['id'], ['quantity' => $dish['counter']]);
             }
         }
 
         return response()->json([
-            'success' => !$error,
-            'dishes' => $dish_data
+            'error' => $error,
         ]);
     }
     //->except('dishes')
