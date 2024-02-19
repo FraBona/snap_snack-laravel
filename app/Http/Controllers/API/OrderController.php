@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PaymentEmail;
 use App\Models\Dish;
 use App\Models\Order;
+use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
@@ -120,8 +125,23 @@ class OrderController extends Controller
             }
         }
 
+        $customer_email = $user_data['customer_email'];
+
+        $restaurant_email_owner = User::with('restaurant')->find($user_data['restaurant_id']);
+
+        $restaurant_email = $restaurant_email_owner->email;
+
+        $restaurant_name = $restaurant_email_owner->restaurant->name;
+
+        // INVIO LE EMAIL AL CUSTOMER ED AL RISTORATORE : 
+
+        Mail::to($restaurant_email)->send(new PaymentEmail($restaurant_name, $amount));
+ 
+        Mail::to($customer_email)->send(new PaymentEmail($restaurant_name, $amount));
+
         return response()->json([
             'error' => $error,
+            'pippo' => $restaurant_email,           
         ]);
     }
     //->except('dishes')
