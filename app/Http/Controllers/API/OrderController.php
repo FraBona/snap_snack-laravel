@@ -127,7 +127,13 @@ class OrderController extends Controller
 
         $customer_email = $user_data['customer_email'];
 
-        $restaurant_email_owner = User::with('restaurant')->find($user_data['restaurant_id']);
+        $email_restaurant_macro = Restaurant::find($user_data['restaurant_id']);
+
+        $email_restaurant_micro = $email_restaurant_macro->user_id;
+
+        $restaurant_email_owner = User::find($email_restaurant_micro);
+
+        // $restaurant_email_owner = User::with('restaurant')->find($user_data['restaurant_id']);
 
         $restaurant_email = $restaurant_email_owner->email;
 
