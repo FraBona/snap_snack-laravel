@@ -16,10 +16,10 @@ class PaymentConfirmation extends Mailable
     /**
      * Create a new message instance.
      */
-
-    public function build() {
-        return $this->view('emails.payment_confirmation')
-                    ->subject('Payment Confirmation');
+    public function build()
+    {
+        return $this->subject('Payment Confirmation')
+                    ->view('emails.payment_confirmation'); // Create a corresponding view file in resources/views/emails
     }
     public function __construct()
     {
