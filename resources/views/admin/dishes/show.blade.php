@@ -5,10 +5,10 @@
     }
 
     .img-dish {
-        min-width: 200px;
-        min-height: 150px;
-        max-width: 200px;
-        max-height: 150px;
+        min-width: 400px;
+        min-height: 250px;
+        max-width: 400px;
+        max-height: 250px;
         object-fit: cover;
         border-radius: 1rem;
     }

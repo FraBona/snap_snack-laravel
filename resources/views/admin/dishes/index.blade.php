@@ -28,6 +28,7 @@
         max-height: 150px;
         object-fit: cover;
         border-radius: 1rem;
+        margin-top: 20px;
     }
 
 </style>

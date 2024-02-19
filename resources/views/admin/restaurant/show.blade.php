@@ -7,14 +7,19 @@
         }
 
         .restaurant-img {
-            min-width: 300px;
+            min-width: 450px;
+            min-height: 350px;
+            max-width: 450px;
+            max-height: 350px;
             object-fit: cover;
             border-radius: 1rem;
+            margin-left: 30px;
         }
 
         .card-photo {
             display: flex;
             align-items: center;
+            justify-content: center
         }
 
         .card-description {
@@ -60,6 +65,10 @@
             text-decoration: none;
             color: white;
         }
+
+        .rest-description {
+            font-size: 14px;
+        }
     </style>
 
     <div class="button-wrapper">
@@ -78,8 +87,8 @@
                     <li class="infos">L'Indirizzo del tuo ristorante é: <strong>{{ $restaurant->address }}</strong></li>
                     <li class="infos">Il numero del tuo ristorante é: <strong>{{ $restaurant->phone_number }}</strong></li>
                     <li class="infos">La partita iva del tuo ristorante é: <strong>{{ $restaurant->vat }}</strong></li>
-                    <li class="infos">Descrizione: <strong>{{ $restaurant->description }}</strong></li>
-                    <ul class="d-flex justify-content-center gap-2 p-2 ">
+                    <li class="infos rest-description">Descrizione:<strong>{{ $restaurant->description }}</strong></li>
+                    <ul class="d-flex justify-content-start gap-2 p-2 ">
                         @foreach ($restaurant->categories as $category)
                             <li class="infos badge rounded-pill text-bg-primary">{{ $category->name }}</li>
                         @endforeach
