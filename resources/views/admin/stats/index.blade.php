@@ -12,6 +12,7 @@
     // Estrai i dati appropriati dall'array associativo
     const dataCounts = Object.values(@json($ordersData)).map(item => item.orderCount);
     const dataAmounts = Object.values(@json($ordersData)).map(item => item.totalSalesAmount);
+    
     const labels = Object.keys(@json($ordersData));
 
     new Chart(ctx, {
@@ -61,7 +62,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 50px;
     margin: 50px;
     height: calc(100vh - 150px);
   }
