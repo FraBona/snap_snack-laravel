@@ -126,6 +126,7 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->vat = $restaurant['vat'];
             $new_restaurant->photo = $restaurant['photo'];
             $new_restaurant->user_id = getUniqueUserId($userIds, $data, $faker);
+            $new_restaurant->is_default = 1;
 
             $new_restaurant->save();
             $new_restaurant->categories()->attach($faker->randomElements($categoryIds, random_int(1, 3)));

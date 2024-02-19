@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('vat')->unique();
             $table->string('photo')->nullable();
             $table->string('slug')->unique();
+            $table->boolean('is_default')->default(0)->nullable();
             $table->timestamps();
         });
     }
