@@ -140,8 +140,7 @@ class OrderController extends Controller
         Mail::to($customer_email)->send(new PaymentEmail($restaurant_name, $amount));
 
         return response()->json([
-            'error' => $error,
-            'pippo' => $restaurant_email,           
+            'error' => $error,       
         ]);
     }
     //->except('dishes')

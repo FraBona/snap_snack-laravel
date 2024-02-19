@@ -22,7 +22,7 @@ class OrderController extends Controller
         $user = Auth::user()->id;
         $restaurant = Restaurant::where('user_id', '=', $user)->first();
         if ($restaurant) {
-            $orders = Order::where('restaurant_id', '=', $restaurant->id)->get();
+            $orders = Order::where('restaurant_id', '=', $restaurant->id)->orderByDesc('created_at')->get();
             $orderAmount = [];
             foreach($orders as $order) {
                 $dishes = Dish::where('restaurant_id', '=', $order->restaurant_id)->get();
