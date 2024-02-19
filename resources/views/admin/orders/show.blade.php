@@ -31,22 +31,22 @@
             </table>
             <div class="row justify-content-center">
               @foreach ($dishesWithQuantities as $dish)
-              <div class="dish-wrapper col-3 gap-3 mt-4">
-                      <?php
-                        $object = (object)$dish;
-                      ?>
-                      @if ($object->name === 'errore')
-                        
-                      @else
-                      @if ($object->name->photo)
-                        <img class="img-dish mt-5" src="{{ asset('storage/' . $object->name->photo) }}" alt="">
-                      @endif
-                        <h4>Nome: <span class="text-danger">{{$object->name->name}}</span></h4>
-                        <h4>Quantita: <span class="text-danger">{{$object->quantity}}</span></h4>
-                      @endif
-                </div>
-                @endforeach
-            </div>
+                  @if ($dish['quantity'] > 0)
+                      @for ($i = 0; $i < $dish['quantity']; $i++)
+                          <div class="dish-wrapper col-3 gap-3 mt-4">
+                              <?php $object = (object) $dish; ?>
+                              @if ($object->name !== 'errore')
+                                  @if ($object->name->photo)
+                                      <img class="img-dish mt-5" src="{{ asset('storage/' . $object->name->photo) }}" alt="">
+                                  @endif
+                                  <h4>Nome: <span class="text-danger">{{ $object->name->name }}</span></h4>
+                                  <h4>Quantita: <span class="text-danger">{{ $object->quantity }}</span></h4>
+                              @endif
+                          </div>
+                      @endfor
+                  @endif
+              @endforeach
+          </div>
         </div>
     </section>
 @endsection
