@@ -15,9 +15,12 @@ class PaymentEmail extends Mailable
     public $restaurantName;
     public $orderTotal;
 
-    public function __construct($restaurantName, $orderTotal){
+    public $customer_address;
+
+    public function __construct($restaurantName, $orderTotal, $customer_address){
         $this->restaurantName = $restaurantName;
         $this->orderTotal = $orderTotal;
+        $this->customer_address = $customer_address;
     }
     public function build()
     {

@@ -133,11 +133,13 @@ class OrderController extends Controller
 
         $restaurant_name = $restaurant_email_owner->restaurant->name;
 
+        $customer_address = $user_data['customer_address'];
+
         // INVIO LE EMAIL AL CUSTOMER ED AL RISTORATORE : 
 
-        Mail::to($restaurant_email)->send(new PaymentEmail($restaurant_name, $amount));
+        Mail::to($restaurant_email)->send(new PaymentEmail($restaurant_name, $amount, $customer_address));
  
-        Mail::to($customer_email)->send(new PaymentEmail($restaurant_name, $amount));
+        Mail::to($customer_email)->send(new PaymentEmail($restaurant_name, $amount, $customer_address));
 
         return response()->json([
             'error' => $error,       
