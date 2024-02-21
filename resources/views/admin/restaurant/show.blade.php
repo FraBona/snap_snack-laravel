@@ -19,7 +19,8 @@
         .card-photo {
             display: flex;
             align-items: center;
-            justify-content: center
+            justify-content: center;
+            width: 500px;
         }
 
         .card-description {

@@ -20,7 +20,7 @@
                                 Bene! Sei loggato
                             </div>
                         @endif
-                        <strong>Bene! Sei loggato</strong>
+                        <strong>Benvenuto Ristoratore ! </strong>
                         @if (!$restaurant)
                             <a class="btn btn-primary" href="{{ route('admin.restaurant.create') }}">Aggiungi il tuo
                                 ristorante</a>

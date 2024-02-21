@@ -158,7 +158,7 @@
             }
 
             if (vat === '' || vat.length < 11 || vat.length > 11 || !isOnlyNumber(vat)) {
-                vat_error.textContent = 'Inserisci un Vat valido';
+                vat_error.textContent = 'Inserisci una Partita Iva valida';
                 errors = true;
             } else {
                 vat_error.textContent = '';
